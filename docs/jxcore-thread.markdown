@@ -30,6 +30,7 @@ We can compile it now with `-native` switch:
 Now when we run it, it displays `true`:
 
     > ./app
+    true
 
 ## process.keepAlive(timeout)
 
