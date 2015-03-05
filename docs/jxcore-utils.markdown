@@ -52,7 +52,7 @@ Resumes block execution paused by `pause()` or `jump()`;
 
 ### console.log(data [, ...], color)
 
-This method of `jxcore.utils` object does the same thing as native [`console.log()`](console.markdown#console-log-data)
+The `jxcore.utils.console.log()` method does the same thing as native [`console.log()`](console.markdown#console-log-data)
 (prints the output to stdout with newline) except that it accepts a color name as the last parameter.
 
 The `color` parameter is not limited only for colorizing the output - it may also apply some simple formatting.
@@ -83,7 +83,6 @@ Value of this parameter may be one of the following:
 
 * Text Formatting
     * bold
-    * italic
     * underline
     * inverse
 
@@ -140,11 +139,11 @@ Displays:
 
 ### setColor(data [, ...], color)
 
-Returns the string containing all `data` arguments wrapped with specific `color` attribute added.
+Returns the string containing all `data` arguments wrapped with specific `color` attribute.
 Sending this string to the console will result in colorized output.
 
 ```js
-var yellow = jxcore.utils.console.setColor("The yellow is here", "yellow");
+var yellow = jxcore.utils.console.setColor("The yellow is here", "and here", "yellow");
 console.log(yellow);
 ```
 
