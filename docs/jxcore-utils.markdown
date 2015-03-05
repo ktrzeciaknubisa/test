@@ -83,7 +83,7 @@ Value of this parameter may be one of the following:
 
 * Text Formatting
     * bold
-    * italic (not widely supported - may not work on all platforms)
+    * italic (_not widely supported - may not work on all platforms_)
     * underline
     * inverse
 
