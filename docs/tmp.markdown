@@ -1,6 +1,7 @@
 # Passing arguments to tasks
 
-By default, when you call a task, for example:
+By default, when you call a task, the `param` is internally processed with `JSON.stringify()`, sent to the task and then parsed back (`JSON.parse()`).
+For example"
 
 ```js
 var method = function (param) {
@@ -9,14 +10,15 @@ var method = function (param) {
 
 var param = {str: "hello"};
 jxcore.tasks.addTask(method, param);
-// Type of param: 'object'. Value: { str: 'hello' }
 ```
 
-the `param` is internally processed with `JSON.stringify()`, sent to task and then parsed back (`JSON.parse()`).
+Displays the following output:
 
-However there are some scenarios, when user already have stringified value and wants to pass it 'as-is', while having it parsed in the task's method.
+> Type of param: 'object'. Value: { str: 'hello' }
 
-In that case, the above code would behave differently: `addTask()` would stringify the argument again to parse it back, but at this point it would still be a string, instead of parsed object:
+However there are some scenarios, when user already have a stringified value and wants to pass it 'as-is', while having it parsed in the task's method.
+
+In that case, the above code would behave differently: `addTask()` would internally stringify the argument again to parse it back, but at this point it would still be a string, instead of parsed object:
 
 ```js
 var param = JSON.stringify({str: "hello"});
@@ -24,7 +26,7 @@ jxcore.tasks.addTask(method, param);
 //Type of param: 'string'. Value: '{"str":"hello"}'
 ```
 
-Note the `string` type of the `param`.
+Note the `string` type of the `param` received by a task.
 
 To avoid this, there are few extra methods available:
 
