@@ -18,7 +18,7 @@ Displays the following output:
 
 However there are some scenarios, when user already have a stringified value and wants to pass it 'as-is', while having it parsed in the task's method.
 
-In that case, the above code would behave differently: `addTask()` would internally stringify the argument again to parse it back, but at this point it would still be a string, instead of parsed object:
+In that case, the above code would behave as follows: `addTask()` would internally stringify the argument again to parse it back, but at this point it would still be a string, instead of parsed object:
 
 ```js
 var param = JSON.stringify({str: "hello"});
@@ -45,3 +45,6 @@ jxcore.tasks._addTask(method, param);
 ```
 
 > Type of param: 'object'. Value: { str: 'hello' }
+
+Apart from this behavior the methods mentioned above work exactly the same as their non-underscored equivalents.
+For their full specification please refer below.
