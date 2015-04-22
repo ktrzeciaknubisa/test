@@ -35,9 +35,7 @@ This parameter receives commands separated with commas.
 
 For example, the following command line:
 
-    ```bash
     > jx package helloworld.js -preinstall "mkdir dir1,touch dir1/file.txt"
-    ```
 
 will get converted to the following array and embedded into JXP project file:
 
