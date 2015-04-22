@@ -12,5 +12,6 @@ Boolean value. Default is `false`.
     ```> jx package helloworld.js -extract 0```
 
 - if provided, and followed by anything else than `0` or `no` or `false`, it acts as `true`:
-
+    ```bash
     > jx package helloworld.js -extract 1
+    ```
