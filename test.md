@@ -9,19 +9,22 @@ They all should be called prior to `cordova plugin add jxcore-cordova/io.jxcore.
     ```bash
     $ cd /my/cordova/app
     $ rm -f ./jxcore-cordova/io.jxcore.node/src/android/jxcore-binaries/*
-    $ cp -f /jxcore/repo/out_android/android/bin/* jxcore-cordova/io.jxcore.node/src/android/jxcore-binaries/ 
+    $ cp -f /jxcore/repo/out_android/android/bin/* jxcore-cordova/io.jxcore.node/src/android/jxcore-binaries/
     ```
 
 3. recompile .so files
-```bash
-$ cd jxcore-cordova/io.jxcore.node/src/android/jni
-$ ~/android-ndk-path/ndk-build
-$ cd ../../../../../
-```
+
+    ```bash
+    $ cd jxcore-cordova/io.jxcore.node/src/android/jni
+    $ ~/android-ndk-path/ndk-build
+    $ cd ../../../../../
+    ```
 
 4. add/re-add the plugin
-```bash
-cd jxcore-cordova/io.jxcore.node/src/android/jni
-~/android-ndk-r10d/ndk-build
-cd ../../../../../
-```
+
+    ```bash
+    cd jxcore-cordova/io.jxcore.node/src/android/jni
+    ~/android-ndk-r10d/ndk-build
+    cd ../../../../../
+    ```
+
