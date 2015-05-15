@@ -1,7 +1,7 @@
 ### Updating JXcore binaries
 
 Below are the steps to be taken if you want to update JXcore binaries in your Cordova JXcore application.
-They all should be called prior to `` command.
+They all should be called prior to `cordova plugin add` command.
 
 1. [Compile as a Static Library](https://github.com/jxcore/jxcore/blob/master/doc/Android_Compile.md#compile-as-a-static-library)
 2. Refresh `jxcore-cordova/io.jxcore.node/src/android/jxcore-binaries` folder contents:
@@ -19,9 +19,16 @@ They all should be called prior to `` command.
     $ ~/android-ndk-path/ndk-build
     ```
 
-4. Add/re-add the plugin
+4. Add/re-add the plugin/platform
 
     ```bash
     $ cd ../../../../../
     $ cordova plugin add jxcore-cordova/io.jxcore.node/
+    $ cordova platforms add android
+    ```
+    
+5. You may run the app now
+
+    ```bash
+    $ cordova run
     ```
