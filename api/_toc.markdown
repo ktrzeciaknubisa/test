@@ -13,11 +13,11 @@
 # Sorted by Commands
 
 * [--help](jxcore-command-help.markdown)
-* [compile](jxcore-feature-packaging-code-protection.markdown#jxcore_features_package_manager_compile)
+* [compile](jxcore-feature-packaging-code-protection.markdown#compile)
 * [install](jxcore-command-install.markdown)
 * [monitor](jxcore-command-monitor.markdown)
 * [mt / mt-keep](jxcore-command-mt.markdown)
-* [package](jxcore-feature-packaging-code-protection.markdown#jxcore_features_package_manager_package)
+* [package](jxcore-feature-packaging-code-protection.markdown#package)
 
 # Sorted by Modules API
 * [Monitor](jxcore-monitor.markdown)
