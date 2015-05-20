@@ -12,7 +12,7 @@ process.keepAlive();
 
 Attaching any callback to `restart` event, depending on the context in which it is performed, enables internal process or sub-instance recovery.
 
-Internal Recovery is a separate section described [here](jxcore-feature-internal-recovery.html).
+Internal Recovery is a separate section described [here](jxcore-feature-internal-recovery.markdown).
 
 ## process.isEmbedded
 

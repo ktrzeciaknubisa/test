@@ -48,7 +48,7 @@ Example of listening for `uncaughtException`:
 Note that `uncaughtException` is a very crude mechanism for exception
 handling and may be removed in the future.
 
-Don't use it, use [domains](domain.html) instead. If you do use it, restart
+Don't use it, use [domains](domain.markdown) instead. If you do use it, restart
 your application after every unhandled exception!
 
 Do *not* use it as the JXcore equivalent of `On Error Resume Next`. An

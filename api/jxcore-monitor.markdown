@@ -9,9 +9,9 @@ The Process Monitor is global and can be referenced from anywhere:
 var mon = jxcore.monitor;
 ```
 
-You can control monitor's process from the [command line](jxcore-command-monitor.html) also.
+You can control monitor's process from the [command line](jxcore-command-monitor.markdown) also.
 
-Apart from this feature, JXcore also offers [Internal Recovery](jxcore-feature-internal-recovery.html).
+Apart from this feature, JXcore also offers [Internal Recovery](jxcore-feature-internal-recovery.markdown).
 
 All `jxcore.monitor` methods can be disabled from *jx.config* file.
 See [`allowMonitoringAPI`](jxconfig.html#jxconfig_allowmonitoringapi).

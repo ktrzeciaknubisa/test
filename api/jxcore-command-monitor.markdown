@@ -4,7 +4,7 @@
 JXcore offers embedded process monitoring tool. It checks regularly whether the monitored process/processes still exist and restarts them, if required.
 When the monitor is running, your applications can subscribe to it and start being monitored.
 
-Apart from this feature, JXcore offers also [Internal Recovery](jxcore-feature-internal-recovery.html).
+Apart from this feature, JXcore offers also [Internal Recovery](jxcore-feature-internal-recovery.markdown).
 Please refer there for complementary information.
 
 ## Commands
@@ -41,7 +41,7 @@ Please note: not every application is a good candidate for being monitored.
 Especially those apps, which are not designed for constant running - they should probably not be monitored,
 but that depends on the developer and application's purpose.
 
-For more information about this, see [Process Monitor API](jxcore-monitor.html).
+For more information about this, see [Process Monitor API](jxcore-monitor.markdown).
 
 ### start
 
@@ -73,7 +73,7 @@ While the monitor is running, you can access its http server, e.g. by a browser 
 
 ## Subscribing application for being monitored
 
-See `followMe()` and `leaveMe()` on [Process Monitor API](jxcore-monitor.html).
+See `followMe()` and `leaveMe()` on [Process Monitor API](jxcore-monitor.markdown).
 
 ## Config file
 

@@ -403,7 +403,7 @@ Even if you would edit the `JXP` project file manually and add `js` files into t
 
 ### assets
 
-There are a few native methods in the [FileSystem](fs.html) module that you can use to access assets embedded inside a JX package.
+There are a few native methods in the [FileSystem](fs.markdown) module that you can use to access assets embedded inside a JX package.
 
 * `readFile()`
 * `readFileSync()`

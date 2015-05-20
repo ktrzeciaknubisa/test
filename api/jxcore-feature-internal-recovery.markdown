@@ -1,6 +1,6 @@
 # Internal Recovery
 
-In addition to recovering the process of a crashed applications by external [monitoring process](jxcore-command-monitor.html),
+In addition to recovering the process of a crashed applications by external [monitoring process](jxcore-command-monitor.markdown),
 JXcore also provides automatic Internal Process Recovery as well as Internal Instance Recovery (for code running in multitasking mode).
 
 ## Internal Process Recovery

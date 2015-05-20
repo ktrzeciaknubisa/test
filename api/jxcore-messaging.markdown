@@ -150,7 +150,7 @@ Error codes are defined in JMI.io settings file.
 ### start
 
 This event is raised after the server is successfully started.
-When the server is running in multi-instanced mode ([mt /mt-keep](jxcore-command-mt.html) command), this event occurs for each of the sub-instances.
+When the server is running in multi-instanced mode ([mt /mt-keep](jxcore-command-mt.markdown) command), this event occurs for each of the sub-instances.
 
 ```js
 server.on("start", function() {
