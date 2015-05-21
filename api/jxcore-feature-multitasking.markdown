@@ -18,7 +18,7 @@ But there is another way – JXcore exposes special thread-safe [Memory Store](j
 
 Apart from that, there are also two other ways for sub-instances to communicate with the main instance:
 
-1. sending a message – [`process.sendToMain()`](jxcore-process.html#jxcore_process_process_sendtomain_param),
+1. sending a message – [`process.sendToMain()`](jxcore-process.markdown#jxcore_process_process_sendtomain_param),
 2. returning the result from the task, since this is the regular method.
 
 ### Defaults
@@ -34,8 +34,8 @@ If you launch te code with mt/mt-keep command line parameter, you can set the in
 
     > jx mt:4 hello.js
 
-Otherwise you can use [`tasks.setThreadCount()`](jxcore-tasks.html#jxcore_tasks_tasks_setthreadcount_value) method.
-See also [How to run multitasked code?](jxcore-feature-multitasking.html#jxcore_feature_multitasking_how_to_run_multitasked_code) for more information.
+Otherwise you can use [`tasks.setThreadCount()`](jxcore-tasks.markdown#jxcore_tasks_tasks_setthreadcount_value) method.
+See also [How to run multitasked code?](jxcore-feature-multitasking.markdown#jxcore_feature_multitasking_how_to_run_multitasked_code) for more information.
 
 ### Memory management
 

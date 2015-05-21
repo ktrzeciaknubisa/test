@@ -62,7 +62,7 @@ See [http.close()][] for details.
 Makes a request to a secure web server.
 
 `options` can be an object or a string. If `options` is a string, it is
-automatically parsed with [url.parse()](url.html#url.parse).
+automatically parsed with [url.parse()](url.markdown#url.parse).
 
 All options from [http.request()][] are valid.
 
@@ -171,7 +171,7 @@ Example:
 Like `http.get()` but for HTTPS.
 
 `options` can be an object or a string. If `options` is a string, it is
-automatically parsed with [url.parse()](url.html#url.parse).
+automatically parsed with [url.parse()](url.markdown#url.parse).
 
 Example:
 
@@ -202,12 +202,12 @@ Global instance of [https.Agent][] for all HTTPS client requests.
 
 [Agent]: #https_class_https_agent
 [globalAgent]: #https_https_globalagent
-[http.listen()]: http.html#http_server_listen_port_hostname_backlog_callback
-[http.close()]: http.html#http_server_close_callback
-[http.Agent]: http.html#http_class_http_agent
-[http.request()]: http.html#http_http_request_options_callback
+[http.listen()]: http.markdown#http_server_listen_port_hostname_backlog_callback
+[http.close()]: http.markdown#http_server_close_callback
+[http.Agent]: http.markdown#http_class_http_agent
+[http.request()]: http.markdown#http_http_request_options_callback
 [https.Agent]: #https_class_https_agent
 [https.request()]: #https_https_request_options_callback
-[tls.connect()]: tls.html#tls_tls_connect_options_callback
-[tls.createServer()]: tls.html#tls_tls_createserver_options_secureconnectionlistener
-[SSL_METHODS]: http://www.openssl.org/docs/ssl/ssl.html#DEALING_WITH_PROTOCOL_METHODS
+[tls.connect()]: tls.markdown#tls_tls_connect_options_callback
+[tls.createServer()]: tls.markdown#tls_tls_createserver_options_secureconnectionlistener
+[SSL_METHODS]: http://www.openssl.org/docs/ssl/ssl.markdown#DEALING_WITH_PROTOCOL_METHODS

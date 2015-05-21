@@ -146,7 +146,7 @@ on `process.stderr`, `process.stdout`, or `process.stdin`:
     $ jx -p "Boolean(process.stdout.isTTY)" | cat
     false
 
-See [the tty docs](tty.html#tty_tty) for more information.
+See [the tty docs](tty.markdown#tty_tty) for more information.
 
 ## process.stderr
 
@@ -184,7 +184,7 @@ Example of opening standard input and listening for both events:
 As a Stream, `process.stdin` can also be used in "old" mode that is compatible
 with scripts written for node prior v0.10.
 For more information see
-[Stream compatibility](stream.html#stream_compatibility_with_older_node_versions).
+[Stream compatibility](stream.markdown#stream_compatibility_with_older_node_versions).
 
 In "old" Streams mode the stdin stream is paused by default, so one
 must call `process.stdin.resume()` to read from it. Note also that calling
@@ -666,4 +666,4 @@ a diff reading, useful for benchmarks and measuring intervals:
       // benchmark took 1000000527 nanoseconds
     }, 1000);
 
-[EventEmitter]: events.html#events_class_events_eventemitter
+[EventEmitter]: events.markdown#events_class_events_eventemitter

@@ -268,7 +268,7 @@ The callback gets two arguments `(err, files)` where `files` is an array of
 the names of the files in the directory excluding `'.'` and `'..'`.
 
 It will be checking the JX package when the path was not found on the file system.
-See [Accessing files and assets from inside a package](jxcore-feature-packaging-code-protection.html#jxcore_feature_packaging_code_protection_accessing_files_and_assets_from_inside_a_package).
+See [Accessing files and assets from inside a package][].
 
 ## fs.readdirSync(path)
 
@@ -433,7 +433,7 @@ contents of the file.
 If no encoding is specified, then the raw buffer is returned.
 
 It will be checking the JX package when the path was not found on the file system.
-See [Accessing files and assets from inside a package](jxcore-feature-packaging-code-protection.html#jxcore_feature_packaging_code_protection_accessing_files_and_assets_from_inside_a_package).
+See [Accessing files and assets from inside a package][]
 
 ## fs.readFileSync(filename, [options])
 
@@ -689,7 +689,7 @@ An example to read the last 10 bytes of a file which is 100 bytes long:
 
 ## Class: fs.ReadStream
 
-`ReadStream` is a [Readable Stream](stream.html#stream_class_stream_readable).
+`ReadStream` is a [Readable Stream][].
 
 ### Event: 'open'
 
@@ -715,7 +715,7 @@ default mode `w`.
 
 ## Class: fs.WriteStream
 
-`WriteStream` is a [Writable Stream](stream.html#stream_class_stream_writable).
+`WriteStream` is a [Writable Stream][].
 
 ### Event: 'open'
 
@@ -749,3 +749,8 @@ See more details in [fs.watch](#fs_fs_watch_filename_options_listener).
 * `error` {Error object}
 
 Emitted when an error occurs.
+
+
+[Accessing files and assets from inside a package]: jxcore-feature-packaging-code-protection.markdown#accessing-files-and-assets-from-inside-a-package
+[Readable Stream]: stream.markdown#class-streamreadable)
+[Writable Stream]: stream.markdown#class-streamwritable)

@@ -4,7 +4,7 @@
 
 A stream is an abstract interface implemented by various objects in
 JXcore.  For example a [request to an HTTP
-server](http.html#http_http_incomingmessage) is a stream, as is
+server](http.markdown#http_http_incomingmessage) is a stream, as is
 [stdout][]. Streams are readable, writable, or both. All streams are
 instances of [EventEmitter][]
 
@@ -112,9 +112,9 @@ out.
 
 Examples of readable streams include:
 
-* [http responses, on the client](http.html#http_http_incomingmessage)
-* [http requests, on the server](http.html#http_http_incomingmessage)
-* [fs read streams](fs.html#fs_class_fs_readstream)
+* [http responses, on the client](http.markdown#http_http_incomingmessage)
+* [http requests, on the server](http.markdown#http_http_incomingmessage)
+* [fs read streams](fs.markdown#fs_class_fs_readstream)
 * [zlib streams][]
 * [crypto streams][]
 * [tcp sockets][]
@@ -444,13 +444,13 @@ that you are writing data *to*.
 
 Examples of writable streams include:
 
-* [http requests, on the client](http.html#http_class_http_clientrequest)
-* [http responses, on the server](http.html#http_class_http_serverresponse)
-* [fs write streams](fs.html#fs_class_fs_writestream)
+* [http requests, on the client](http.markdown#http_class_http_clientrequest)
+* [http responses, on the server](http.markdown#http_class_http_serverresponse)
+* [fs write streams](fs.markdown#fs_class_fs_writestream)
 * [zlib streams][]
 * [crypto streams][]
 * [tcp sockets][]
-* [child process stdin](child_process.html#child_process_child_stdin)
+* [child process stdin](child_process.markdown#child_process_child_stdin)
 * [process.stdout][], [process.stderr][]
 
 #### writable.write(chunk, [encoding], [callback])
@@ -1448,24 +1448,24 @@ beyond setting option flags in the constructor, it is **not** safe to
 modify them.
 
 
-[EventEmitter]: events.html#events_class_events_eventemitter
+[EventEmitter]: events.markdown#events_class_events_eventemitter
 [Object mode]: #stream_object_mode
 [`stream.push(chunk)`]: #stream_readable_push_chunk_encoding
 [`stream.push(null)`]: #stream_readable_push_chunk_encoding
 [`stream.push()`]: #stream_readable_push_chunk_encoding
 [`unpipe()`]: #stream_readable_unpipe_destination
 [unpiped]: #stream_readable_unpipe_destination
-[tcp sockets]: net.html#net_class_net_socket
-[zlib streams]: zlib.html
-[zlib]: zlib.html
-[crypto streams]: crypto.html
-[crypto]: crypto.html
-[tls.CryptoStream]: tls.html#tls_class_cryptostream
-[process.stdin]: process.html#process_process_stdin
-[stdout]: process.html#process_process_stdout
-[process.stdout]: process.html#process_process_stdout
-[process.stderr]: process.html#process_process_stderr
-[child process stdout and stderr]: child_process.html#child_process_child_stdout
+[tcp sockets]: net.markdown#net_class_net_socket
+[zlib streams]: zlib.markdown
+[zlib]: zlib.markdown
+[crypto streams]: crypto.markdown
+[crypto]: crypto.markdown
+[tls.CryptoStream]: tls.markdown#tls_class_cryptostream
+[process.stdin]: process.markdown#process_process_stdin
+[stdout]: process.markdown#process_process_stdout
+[process.stdout]: process.markdown#process_process_stdout
+[process.stderr]: process.markdown#process_process_stderr
+[child process stdout and stderr]: child_process.markdown#child_process_child_stdout
 [API for Stream Consumers]: #stream_api_for_stream_consumers
 [API for Stream Implementors]: #stream_api_for_stream_implementors
 [Readable]: #stream_class_stream_readable
@@ -1484,5 +1484,5 @@ modify them.
 [`_write(chunk, encoding, callback)`]: #stream_writable_write_chunk_encoding_callback_1
 [`_write()`]: #stream_writable_write_chunk_encoding_callback_1
 [_write]: #stream_writable_write_chunk_encoding_callback_1
-[`util.inherits`]: util.html#util_util_inherits_constructor_superconstructor
+[`util.inherits`]: util.markdown#util_util_inherits_constructor_superconstructor
 [`end()`]: #stream_writable_end_chunk_encoding_callback

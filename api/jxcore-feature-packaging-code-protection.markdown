@@ -379,7 +379,7 @@ Normally, `fs` can not reach the JavaScript files inside the package. If you nee
 
 * **native**
 When this parameter is set to 'true', the compilation process creates standalone, self-executable binary rather than a package.
-It acts exactly as `jx package` command called with [`-native`](jxcore-feature-packaging-code-protection.html#jxcore_feature_packaging_code_protection_native) switch.
+It acts exactly as `jx package` command called with [`-native`](jxcore-feature-packaging-code-protection.markdown#jxcore_feature_packaging_code_protection_native) switch.
 
 ### Supported file types
 

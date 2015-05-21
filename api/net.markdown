@@ -524,8 +524,8 @@ Returns true if input is a version 6 IP address, otherwise returns false.
 ['connect']: #net_event_connect
 ['connection']: #net_event_connection
 ['end']: #net_event_end
-[EventEmitter]: events.html#events_class_events_eventemitter
+[EventEmitter]: events.markdown#events_class_events_eventemitter
 ['listening']: #net_event_listening
 [server.getConnections()]: #net_server_getconnections_callback
-[Readable Stream]: stream.html#stream_readable_stream
-[stream.setEncoding()]: stream.html#stream_stream_setencoding_encoding
+[Readable Stream]: stream.markdown#stream_readable_stream
+[stream.setEncoding()]: stream.markdown#stream_stream_setencoding_encoding

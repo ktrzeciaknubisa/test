@@ -52,7 +52,7 @@ Resumes block execution paused by `pause()` or `jump()`;
 
 ### console.log(data [, ...], color)
 
-The `jxcore.utils.console.log()` method does the same thing as native [`console.log()`](console.html#console_console_log_data)
+The `jxcore.utils.console.log()` method does the same thing as native [`console.log()`](console.markdown#console_console_log_data)
 (prints the output to stdout with newline) except that it accepts a color name as the last parameter.
 
 The `color` parameter is not limited only for colorizing the output - it may also apply some simple formatting.
@@ -121,15 +121,15 @@ displays:
 
 ### console.info(data [, ...], [color])
 
-Same as native [`console.info()`](console.html#console_console_info_data), but with color support. If color is not given as last argument, the `green` is used by default.
+Same as native [`console.info()`](console.markdown#console_console_info_data), but with color support. If color is not given as last argument, the `green` is used by default.
 
 ### console.error(data [, ...], [color])
 
-Same as native [`console.error()`](console.html#console_console_error_data), but with color support. If color is not given as last argument, the `red` is used by default.
+Same as native [`console.error()`](console.markdown#console_console_error_data), but with color support. If color is not given as last argument, the `red` is used by default.
 
 ### console.warn(data [, ...], [color])
 
-Same as native [`console.warn()`](console.html#console_console_warn_data), but with color support. If color is not given as last argument, the `magenta` is used by default.
+Same as native [`console.warn()`](console.markdown#console_console_warn_data), but with color support. If color is not given as last argument, the `magenta` is used by default.
 
 ### console.write(data [, ...], color)
 
