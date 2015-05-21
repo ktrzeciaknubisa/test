@@ -1448,41 +1448,41 @@ beyond setting option flags in the constructor, it is **not** safe to
 modify them.
 
 
-[EventEmitter]: events.markdown#events_class_events_eventemitter
-[Object mode]: #stream_object_mode
-[`stream.push(chunk)`]: #stream_readable_push_chunk_encoding
-[`stream.push(null)`]: #stream_readable_push_chunk_encoding
-[`stream.push()`]: #stream_readable_push_chunk_encoding
-[`unpipe()`]: #stream_readable_unpipe_destination
-[unpiped]: #stream_readable_unpipe_destination
-[tcp sockets]: net.markdown#net_class_net_socket
+[EventEmitter]: events.markdown#class-eventseventemitter
+[Object mode]: #object-mode
+[`stream.push(chunk)`]: #readablepushchunk-encoding
+[`stream.push(null)`]: #readablepushchunk-encoding
+[`stream.push()`]: #readablepushchunk-encoding
+[`unpipe()`]: #readableunpipedestination
+[unpiped]: #readableunpipedestination
+[tcp sockets]: net.markdown#class-netsocket
 [zlib streams]: zlib.markdown
 [zlib]: zlib.markdown
 [crypto streams]: crypto.markdown
 [crypto]: crypto.markdown
-[tls.CryptoStream]: tls.markdown#tls_class_cryptostream
-[process.stdin]: process.markdown#process_process_stdin
-[stdout]: process.markdown#process_process_stdout
-[process.stdout]: process.markdown#process_process_stdout
-[process.stderr]: process.markdown#process_process_stderr
-[child process stdout and stderr]: child_process.markdown#child_process_child_stdout
-[API for Stream Consumers]: #stream_api_for_stream_consumers
-[API for Stream Implementors]: #stream_api_for_stream_implementors
-[Readable]: #stream_class_stream_readable
-[Writable]: #stream_class_stream_writable
-[Duplex]: #stream_class_stream_duplex
-[Transform]: #stream_class_stream_transform
-[`end`]: #stream_event_end
-[`finish`]: #stream_event_finish
-[`_read(size)`]: #stream_readable_read_size_1
-[`_read()`]: #stream_readable_read_size_1
-[_read]: #stream_readable_read_size_1
-[`writable.write(chunk)`]: #stream_writable_write_chunk_encoding_callback
-[`write(chunk, encoding, callback)`]: #stream_writable_write_chunk_encoding_callback
-[`write()`]: #stream_writable_write_chunk_encoding_callback
-[`stream.write(chunk)`]: #stream_writable_write_chunk_encoding_callback
-[`_write(chunk, encoding, callback)`]: #stream_writable_write_chunk_encoding_callback_1
-[`_write()`]: #stream_writable_write_chunk_encoding_callback_1
-[_write]: #stream_writable_write_chunk_encoding_callback_1
-[`util.inherits`]: util.markdown#util_util_inherits_constructor_superconstructor
-[`end()`]: #stream_writable_end_chunk_encoding_callback
+[tls.CryptoStream]: tls.markdown#class-cryptostream
+[process.stdin]: process.markdown#processstdin
+[stdout]: process.markdown#processstdout
+[process.stdout]: process.markdown#processstdout
+[process.stderr]: process.markdown#processstderr
+[child process stdout and stderr]: child_process.markdown#childstdout
+[API for Stream Consumers]: #api-for-stream-consumers
+[API for Stream Implementors]: #api-for-stream-implementors
+[Readable]: #class-streamreadable
+[Writable]: #class-streamwritable
+[Duplex]: #class-streamduplex
+[Transform]: #class-streamtransform
+[`end`]: #event-end
+[`finish`]: #event-finish
+[`_read(size)`]: #readablereadsize
+[`_read()`]: #readablereadsize
+[_read]: #readablereadsize
+[`writable.write(chunk)`]: #writablewritechunk-encoding-callback
+[`write(chunk, encoding, callback)`]: #writablewritechunk-encoding-callback
+[`write()`]: #writablewritechunk-encoding-callback
+[`stream.write(chunk)`]: #writablewritechunk-encoding-callback
+[`_write(chunk, encoding, callback)`]: #writablewritechunk-encoding-callback
+[`_write()`]: #writablewritechunk-encoding-callback
+[_write]: #writablewritechunk-encoding-callback
+[`util.inherits`]: util.markdown#utilinheritsconstructor-superconstructor
+[`end()`]: #writableendchunk-encoding-callback

@@ -526,9 +526,9 @@ that new programs will probably expect buffers, so only use this as a
 temporary measure.
 
 
-[createCipher()]: #crypto_crypto_createcipher_algorithm_password
-[createCipheriv()]: #crypto_crypto_createcipheriv_algorithm_key_iv
-[crypto.createDiffieHellman()]: #crypto_crypto_creatediffiehellman_prime_encoding
-[diffieHellman.setPublicKey()]: #crypto_diffiehellman_setpublickey_public_key_encoding
+[createCipher()]: #cryptocreatecipheralgorithm-password
+[createCipheriv()]: #cryptocreatecipherivalgorithm-key-iv
+[crypto.createDiffieHellman()]: #cryptocreatediffiehellmanprime-encoding
+[diffieHellman.setPublicKey()]: #diffiehellmansetpublickeypublic_key-encoding
 [RFC 2412]: http://www.rfc-editor.org/rfc/rfc2412.txt
 [RFC 3526]: http://www.rfc-editor.org/rfc/rfc3526.txt

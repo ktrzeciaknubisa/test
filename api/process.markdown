@@ -666,4 +666,4 @@ a diff reading, useful for benchmarks and measuring intervals:
       // benchmark took 1000000527 nanoseconds
     }, 1000);
 
-[EventEmitter]: events.markdown#events_class_events_eventemitter
+[EventEmitter]: events.markdown#class-eventseventemitter

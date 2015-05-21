@@ -521,11 +521,11 @@ Returns true if input is a version 4 IP address, otherwise returns false.
 
 Returns true if input is a version 6 IP address, otherwise returns false.
 
-['connect']: #net_event_connect
-['connection']: #net_event_connection
-['end']: #net_event_end
-[EventEmitter]: events.markdown#events_class_events_eventemitter
-['listening']: #net_event_listening
-[server.getConnections()]: #net_server_getconnections_callback
-[Readable Stream]: stream.markdown#stream_readable_stream
-[stream.setEncoding()]: stream.markdown#stream_stream_setencoding_encoding
+['connect']: #event-connect
+['connection']: #event-connection
+['end']: #event-end
+[EventEmitter]: events.markdown#class-eventseventemitter
+['listening']: #event-listening
+[server.getConnections()]: #servergetconnectionscallback
+[Readable Stream]: stream.markdown#class-streamreadable
+[stream.setEncoding()]: stream.markdown#readablesetencodingencoding

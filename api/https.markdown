@@ -200,14 +200,14 @@ for more information.
 
 Global instance of [https.Agent][] for all HTTPS client requests.
 
-[Agent]: #https_class_https_agent
-[globalAgent]: #https_https_globalagent
-[http.listen()]: http.markdown#http_server_listen_port_hostname_backlog_callback
-[http.close()]: http.markdown#http_server_close_callback
-[http.Agent]: http.markdown#http_class_http_agent
-[http.request()]: http.markdown#http_http_request_options_callback
-[https.Agent]: #https_class_https_agent
-[https.request()]: #https_https_request_options_callback
-[tls.connect()]: tls.markdown#tls_tls_connect_options_callback
-[tls.createServer()]: tls.markdown#tls_tls_createserver_options_secureconnectionlistener
+[Agent]: #class-httpsagent
+[globalAgent]: #httpsglobalagent
+[http.listen()]: http.markdown#serverlistenport-hostname-backlog-callback
+[http.close()]: http.markdown#serverclosecallback
+[http.Agent]: http.markdown#class-httpagent
+[http.request()]: http.markdown#httprequestoptions-callback
+[https.Agent]: #class-httpsagent
+[https.request()]: #httpsrequestoptions-callback
+[tls.connect()]: tls.markdown#tlsconnectoptions-callback
+[tls.createServer()]: tls.markdown#tlscreateserveroptions-secureconnectionlistener
 [SSL_METHODS]: http://www.openssl.org/docs/ssl/ssl.markdown#DEALING_WITH_PROTOCOL_METHODS

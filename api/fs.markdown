@@ -751,6 +751,6 @@ See more details in [fs.watch](#fswatchfilefilename-options-listener).
 Emitted when an error occurs.
 
 
-[Accessing files and assets from inside a package]: jxcore-feature-packaging-code-protection.markdown#accessing-files-and-assets-from-inside-a-package
-[Readable Stream]: stream.markdown#class-streamreadable)
-[Writable Stream]: stream.markdown#class-streamwritable)
+[Accessing files and assets from inside a package]: jxcore-feature-packaging-code-protection.markdown#accessing-files-and-assets-from-a-package
+[Readable Stream]: stream.markdown#class-streamreadable
+[Writable Stream]: stream.markdown#class-streamwritable

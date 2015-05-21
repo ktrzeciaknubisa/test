@@ -888,30 +888,29 @@ You can also disable the limit check by setting value 0.
 This option is introduced in JXcore for security reasons.
 
 
-['checkContinue']: #http_event_checkcontinue
-['listening']: net.markdown#_event_listening
-['response']: #http_event_response
-[Agent]: #http_class_http_agent
-[Buffer]: buffer.markdown#buffer_buffer
-[EventEmitter]: events.markdown#events_class_events_eventemitter
-[Readable Stream]: stream.markdown#stream_class_stream_readable
-[Writable Stream]: stream.markdown#stream_class_stream_writable
-[global Agent]: #http_http_globalagent
-[http.ClientRequest]: #http_class_http_clientrequest
-[http.IncomingMessage]: #http_http_incomingmessage
-[http.ServerResponse]: #http_class_http_serverresponse
-[http.Server]: #http_class_http_server
-[http.request()]: #http_http_request_options_callback
-[http.request()]: #http_http_request_options_callback
-[net.Server.close()]: net.markdown#net_server_close_callback
-[net.Server.listen(path)]: net.markdown#net_server_listen_path_callback
-[net.Server.listen(port)]: net.markdown#net_server_listen_port_host_backlog_callback
-[response.end()]: #http_response_end_data_encoding
-[response.write()]: #http_response_write_chunk_encoding
-[response.writeContinue()]: #http_response_writecontinue
-[response.writeHead()]: #http_response_writehead_statuscode_reasonphrase_headers
-[socket.setKeepAlive()]: net.markdown#net_socket_setkeepalive_enable_initialdelay
-[socket.setNoDelay()]: net.markdown#net_socket_setnodelay_nodelay
-[socket.setTimeout()]: net.markdown#net_socket_settimeout_timeout_callback
-[stream.setEncoding()]: stream.markdown#stream_stream_setencoding_encoding
-[url.parse()]: url.markdown#url_url_parse_urlstr_parsequerystring_slashesdenotehost
+['checkContinue']: #event-checkcontinue
+['listening']: net.markdown#event-listening
+['response']: #event-response
+[Agent]: #class-httpagent
+[Buffer]: buffer.markdown#buffer
+[EventEmitter]: events.markdown#class-eventseventemitter
+[Readable Stream]: stream.markdown#class-streamreadable
+[Writable Stream]: stream.markdown#class-streamwritable
+[global Agent]: #httpglobalagent
+[http.ClientRequest]: #class-httpclientrequest
+[http.IncomingMessage]: #httpincomingmessage
+[http.ServerResponse]: #class-httpserverresponse
+[http.Server]: #class-httpserver
+[http.request()]: #httprequestoptions-callback
+[net.Server.close()]: net.markdown#serverclosecallback
+[net.Server.listen(path)]: net.markdown#serverlistenpath-callback
+[net.Server.listen(port)]: net.markdown#serverlistenport-host-backlog-callback
+[response.end()]: #responseenddata-encoding
+[response.write()]: #responsewritechunk-encoding
+[response.writeContinue()]: #responsewritecontinue
+[response.writeHead()]: #responsewriteheadstatuscode-reasonphrase-headers
+[socket.setKeepAlive()]: net.markdown#socketsetkeepaliveenable-initialdelay
+[socket.setNoDelay()]: net.markdown#socketsetnodelaynodelay
+[socket.setTimeout()]: net.markdown#socketsettimeouttimeout-callback
+[stream.setEncoding()]: stream.markdown#readablesetencodingencoding
+[url.parse()]: url.markdown#urlparseurlstr-parsequerystring-slashesdenotehost
