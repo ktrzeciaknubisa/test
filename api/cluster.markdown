@@ -410,7 +410,7 @@ Causes `.suicide` to be set.
 This method is aliased as `worker.destroy()` for backwards compatibility.
 
 Note that in a worker, `process.kill()` exists, but it is not this function,
-it is [kill](process.markdown#process.kill(pid, [signal])).
+it is [kill](process.markdown#processkillpid-signal).
 
 ### worker.disconnect()
 
