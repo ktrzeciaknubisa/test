@@ -586,4 +586,4 @@ done with care and by default will talk over the fd represented an
 environmental variable `NODE_CHANNEL_FD` on the child process. The input and
 output on this fd is expected to be line delimited JSON objects.
 
-[EventEmitter]: events.markdown#events_class_events_eventemitter
+[EventEmitter]: events.markdown#class_events_eventemitter
