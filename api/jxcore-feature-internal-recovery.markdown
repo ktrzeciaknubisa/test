@@ -76,7 +76,7 @@ It makes sense only for uncaught exceptions, which in this case are actually cau
 
 ## Internal Instance Recovery
 
-This is analogous to [Internal Process Recovery](#internal_process_recovery), except that it concerns a **sub-instance** rather than main application process.
+This is analogous to [Internal Process Recovery](#internal-process-recovery), except that it concerns a **sub-instance** rather than main application process.
 
 Attaching any callback to this event inside a code running in a sub-instance enables internal sub-instance recovery.
 When an exception occurs inside the sub-instance, the callback is invoked. You can then decide to allow restart of the instance or not.

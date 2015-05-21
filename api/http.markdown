@@ -176,8 +176,8 @@ already been bound to a port or domain socket.
 Listening on a file descriptor is not supported on Windows.
 
 This function is asynchronous. The last parameter `callback` will be added as
-a listener for the ['listening'](net.markdown#_event_listening_) event.
-See also [net.Server.listen()](net.markdown#_server_listen_handle_callback).
+a listener for the ['listening'](net.markdown#event-listening) event.
+See also [net.Server.listen()](net.markdown#serverlistenhandle-callback).
 
 ### server.close([callback])
 

@@ -4,7 +4,7 @@
 
 A stream is an abstract interface implemented by various objects in
 JXcore.  For example a [request to an HTTP
-server](http.markdown#http_http_incomingmessage) is a stream, as is
+server](http.markdown#httpincomingmessage) is a stream, as is
 [stdout][]. Streams are readable, writable, or both. All streams are
 instances of [EventEmitter][]
 
@@ -112,9 +112,9 @@ out.
 
 Examples of readable streams include:
 
-* [http responses, on the client](http.markdown#http_http_incomingmessage)
-* [http requests, on the server](http.markdown#http_http_incomingmessage)
-* [fs read streams](fs.markdown#fs_class_fs_readstream)
+* [http responses, on the client](http.markdown#httpincomingmessage)
+* [http requests, on the server](http.markdown#httpincomingmessage)
+* [fs read streams](fs.markdown#class-fsreadstream)
 * [zlib streams][]
 * [crypto streams][]
 * [tcp sockets][]
@@ -444,13 +444,13 @@ that you are writing data *to*.
 
 Examples of writable streams include:
 
-* [http requests, on the client](http.markdown#http_class_http_clientrequest)
-* [http responses, on the server](http.markdown#http_class_http_serverresponse)
-* [fs write streams](fs.markdown#fs_class_fs_writestream)
+* [http requests, on the client](http.markdown#class-httpclientrequest)
+* [http responses, on the server](http.markdown#class-httpserverresponse)
+* [fs write streams](fs.markdown#class-fswritestream)
 * [zlib streams][]
 * [crypto streams][]
 * [tcp sockets][]
-* [child process stdin](child_process.markdown#child_process_child_stdin)
+* [child process stdin](child_process.markdown#childstdin)
 * [process.stdout][], [process.stderr][]
 
 #### writable.write(chunk, [encoding], [callback])
@@ -639,7 +639,7 @@ of stream class you are writing:
       <p>Reading only</p>
     </td>
     <td>
-      <p>[Readable](#stream_class_stream_readable_1)</p>
+      <p>[Readable](#class-streamreadable-1)</p>
     </td>
     <td>
       <p><code>[_read][]</code></p>
@@ -650,7 +650,7 @@ of stream class you are writing:
       <p>Writing only</p>
     </td>
     <td>
-      <p>[Writable](#stream_class_stream_writable_1)</p>
+      <p>[Writable](#class-streamwritable-1)</p>
     </td>
     <td>
       <p><code>[_write][]</code></p>
@@ -661,7 +661,7 @@ of stream class you are writing:
       <p>Reading and writing</p>
     </td>
     <td>
-      <p>[Duplex](#stream_class_stream_duplex_1)</p>
+      <p>[Duplex](#class-streamduplex-1)</p>
     </td>
     <td>
       <p><code>[_read][]</code>, <code>[_write][]</code></p>
@@ -672,7 +672,7 @@ of stream class you are writing:
       <p>Operate on written data, then read the result</p>
     </td>
     <td>
-      <p>[Transform](#stream_class_stream_transform_1)</p>
+      <p>[Transform](#class-streamtransform-1)</p>
     </td>
     <td>
       <p><code>_transform</code>, <code>_flush</code></p>

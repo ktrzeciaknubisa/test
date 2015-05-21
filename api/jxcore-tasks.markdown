@@ -103,7 +103,7 @@ jxcore.tasks.on('emptyQueue', function () {
 
 Please keep in mind, that if you plan to use some delayed/async work inside a task,
 the `emptyQueue` event can be fired before they will have chance to complete.
-Refer to [`process.keepAlive()`](jxcore-process.markdown#jxcore_process_process_keepalive_timeout) method for that matter.
+Refer to [`process.keepAlive()`](jxcore-process.markdown#processkeepalivetimeout) method for that matter.
 
 ## Event: 'message'
 

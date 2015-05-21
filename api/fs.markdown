@@ -156,7 +156,7 @@ Synchronous lchmod(2).
 ## fs.stat(path, callback)
 
 Asynchronous stat(2). The callback gets two arguments `(err, stats)` where
-`stats` is a [fs.Stats](#fs_class_fs_stats) object.  See the [fs.Stats](#fs_class_fs_stats)
+`stats` is a [fs.Stats](#class-fsstats) object. See the [fs.Stats](#class-fsstats)
 section below for more information.
 
 ## fs.lstat(path, callback)
@@ -535,7 +535,7 @@ no-op, not an error.
     Stability: 2 - Unstable.
 
 Watch for changes on `filename`, where `filename` is either a file or a
-directory.  The returned object is a [fs.FSWatcher](#fs_class_fs_fswatcher).
+directory.  The returned object is a [fs.FSWatcher](#class-fsfswatcher).
 
 The second argument is optional. The `options` if provided should be an object
 containing a boolean member `persistent`, which indicates whether the process
@@ -742,7 +742,7 @@ Stop watching for changes on the given `fs.FSWatcher`.
 * `filename` {String} The filename that changed (if relevant/available)
 
 Emitted when something changes in a watched directory or file.
-See more details in [fs.watch](#fs_fs_watch_filename_options_listener).
+See more details in [fs.watch](#fswatchfilefilename-options-listener).
 
 ### Event: 'error'
 

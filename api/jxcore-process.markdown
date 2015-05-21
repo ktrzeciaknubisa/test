@@ -100,7 +100,7 @@ process.release();
 
 > This method is implemented only in the sub-instance context. When called from a main instance it does nothing.
 
-Sends a message to the main instance, and there it can be received by attaching to [`message`](jxcore-tasks.markdown#jxcore_tasks_event_message) event.
+Sends a message to the main instance, and there it can be received by attaching to [`message`](jxcore-tasks.markdown#event-message) event.
 The `param` can be any value, for example string or json literal object.
 
 ```js
