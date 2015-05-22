@@ -45,7 +45,10 @@ On some platforms, where python is not installed/available (e.g. android) the te
 
 ### Android standalone binaries
 
-The steps below can be useful for testing standalone jx binaries on android:
+The steps below can be useful for testing standalone jx binaries on android with script mentioned above. 
+Basically it is about copying the test folder and standalone jx to the device and then running the test through `adb shell` command.
+
+Sample preparation script: 
 
 ```bash
 #!/bin/bash
@@ -57,14 +60,13 @@ ADB=~/android-sdks/platform-tools/adb
 # path to local JXcore git repository:
 JXREPO=~/Documents/GitHub/jxcore
 
-cd $JXREPO
-
 # copy test folder from jxcore local repository
 $ADB shell mkdir -p $DEST
 $ADB shell rm -r $DEST/test/
 $ADB push -p $JXREPO/test $DEST/test/
 
 # compile standalone binary for android, if needed
+# cd $JXREPO
 # sudo ./build_scripts/android_standalone.sh ~/android-ndk-r10d arm v8
 
 # copy jx to the device
