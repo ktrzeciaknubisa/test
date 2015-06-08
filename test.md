@@ -1,105 +1,84 @@
-# To run the tests:
 
-## Unix/Macintosh:
+There are pre-compiled binaries of JXcore available from [jxcore.com/downloads](http://jxcore.com/downloads).
+Those are zip files that can be downloaded manually, or you can use bash script (for Unix platforms), that can do the installation for you.
 
-    make test
+# For Linux/OSX:
 
-The command above executes basic tests from *simple* and *message* subfolders of *test* directory.
-
-However, you can also run tests for specified folders, like:
-
-    make test test-simple test-message
-
-Other category of tests resides in *jxcore* subfolder. They can be run as plain *.js* files, packaged or native packaged.
-Extra flags can be provided as parameters - see [test/README.md](../test/README.md) for more details.
-
-The following command is for testing *jxcore* tests as plain .js files:
-
-    make test test-jxcore
-
-or
-
-    make test test-jxcore flags j
-
-As packages:
-
-    make test test-jxcore flags p
-
-As native packages:
-
-    make test test-jxcore flags n
-
-All at once:
-
-    make test test-jxcore flags a
-
-## Windows:
-
-    vcbuild.bat test
-
-## Non-python platforms
-
-On some platforms, where python is not installed/available (e.g. android) the tests can be launched by JXcore itself with the following command:
-
-    jx test/test.js jxcore
-
-### Android standalone binaries
-
-The steps below can be useful for testing standalone jx binaries on android with script mentioned above. 
-Basically it is about copying the test folder and standalone jx to the device and then running the test through `adb shell` command.
-
-Sample preparation script: 
+The [jx_install.sh](https://github.com/jxcore/jxcore/blob/master/tools/jx_install.sh) script always downloads the latest release.
 
 ```bash
-#!/bin/bash
-
-# working folder on android device:
-DEST=/data/local/tmp/jxcore
-# path to adb tool:
-ADB=~/android-sdks/platform-tools/adb
-# path to local JXcore git repository:
-JXREPO=~/Documents/GitHub/jxcore
-
-# copy test folder from jxcore local repository
-$ADB shell mkdir -p $DEST
-$ADB shell rm -r $DEST/test/
-$ADB push -p $JXREPO/test $DEST/test/
-
-# compile standalone binary for android, if needed
-# cd $JXREPO
-# sudo ./build_scripts/android_standalone.sh ~/android-ndk-r10d arm v8
-
-# copy jx to the device
-$ADB push -p $JXREPO/out_android/sa_arm_v8/Release/jx $DEST
+$ curl https://github.com/jxcore/jxcore/blob/master/tools/jx_install.sh | bash
 ```
 
-Now you're ready to run the tests:
+The same script can be taken also from a shorter URL: [http://jxcore.com/xil.sh](http://jxcore.com/xil.sh), so the command would look this way:
 
 ```bash
-$ ~/android-sdks/platform-tools/adb shell
-shell@android:/ $ cd /data/local/tmp/jxcore
-shell@android:/data/local/tmp/jxcore $ ./jx test/test.js jxcore
-```
-    
-## Native Interface
-
-Currently native interface tests are *nix only. (We would appreciate if somebody would add Windows support for the tests. This is indeed not necessary. JXcore native interface 'jx-ni' works also for Windows applications.)
-
-In order to run JX-ni tests you need JXcore is installed on your system. Either compile from the sources or download it from [here](http://jxcore.com/Downloads) 
-
-Assuming you are under the root folder of the project; first you should compile the project as a static library. Let's say you want to do it for SpiderMonkey build. 
-```
-> sudo ./configure --prefix=/testBin --engine-mozilla --static-library
-> sudo make install
+$ curl http://jxcore.com/xil.sh | bash
 ```
 
-Now you can test the native interface;
+## Script options
+
+Several options are available for customizing the installation process. Example of usage:
+
+```bash
+# with curl:
+$ curl http://jxcore.com/xil.sh | bash -s force sm local
+# by calling the script directly:
+$ ./jx_install.sh force sm local
 ```
-> cd tests/native-interface
-> ./run-tests.js /testBin sm 50
+
+### sm
+
+Allows to install SpiderMonkey build instead of default V8.
+
+```bash
+$ curl http://jxcore.com/xil.sh | bash -s sm
 ```
 
-Number 50 at the end of the second command line corresponds to the number of runs per each test case. It's a bad but helpful hack! For your own sake, you may put 1 instead. If you are planning to contribute on native interface please make sure the test cases are passing 50 runs for both sm and v8.
+### v8
 
+Specifying the engine for V8 is not necessary, but still acceptable. Thus both of the following calls are equivalent:
 
+```bash
+$ curl http://jxcore.com/xil.sh | bash
+$ curl http://jxcore.com/xil.sh | bash -s v8
+```
 
+### local
+
+Installs jx binary into the current directory `./` rather than into global path (by default JXcore is installed into global `/usr/local/bin/jx`).
+
+```bash
+$ curl http://jxcore.com/xil.sh | bash -s local
+```
+
+### force
+
+Forces to overwrite the jx if there is already the same version at target path installed. This may be useful in case if you have want to switch from one engine to another:
+
+```bash
+# installs v8:
+$ curl http://jxcore.com/xil.sh | bash
+# forces to install sm
+$ curl http://jxcore.com/xil.sh | bash -s force sm
+```
+
+**Notes:**
+
+* If you have `permission denied` message, make sure the user has root access. Try `su`.
+* FreeBSD requires bash, and unzip installed in order for the script to work.
+
+# For Windows:
+
+Apart from separate zip files per each engine/architecture (32sm/64sm/32v8/64v8), there is also an installer available, which allows to chose one of the variations.
+For example on Windows x32 you may choose one of two options:
+
+* V8 x32
+* SpiderMonkey x32
+
+While on Windows x64 you have 2 more options:
+
+* V8 x32
+* V8 x64
+* SpiderMonkey x32
+* SpiderMonkey x64
