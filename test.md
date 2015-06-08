@@ -54,29 +54,34 @@ $ curl http://jxcore.com/xil.sh | bash -s local
 
 ### force
 
-Forces to overwrite the jx if there is already the same version at target path installed. This may be useful in case if you have want to switch from one engine to another:
+Forces to overwrite the jx if there is already the same version at target path installed. This may be useful in case when you want to switch from one engine to another:
 
 ```bash
 # installs v8:
 $ curl http://jxcore.com/xil.sh | bash
-# forces to install sm
+# forces to install SpiderMonkey
 $ curl http://jxcore.com/xil.sh | bash -s force sm
 ```
 
 **Notes:**
 
-* If you have `permission denied` message, make sure the user has root access. Try `su`.
 * FreeBSD requires bash, and unzip installed in order for the script to work.
+* If you have `permission denied` message, make sure the user has root access. Try executing the command as `su`, or `sudo`:
+
+```bash
+$ curl http://jxcore.com/xil.sh | sudo bash
+```
 
 # For Windows:
 
 Apart from separate zip files per each engine/architecture (32sm/64sm/32v8/64v8), there is also an installer available, which allows to chose one of the variations.
-For example on Windows x32 you may choose one of two options:
+
+For example on **Windows x32** you may choose one of two options:
 
 * V8 x32
 * SpiderMonkey x32
 
-While on Windows x64 you have 2 more options:
+While on **Windows x64** you have total 4 options:
 
 * V8 x32
 * V8 x64
