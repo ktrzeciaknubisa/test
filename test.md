@@ -10,7 +10,7 @@ The [jx_install.sh](https://github.com/jxcore/jxcore/blob/master/tools/jx_instal
 $ curl https://github.com/jxcore/jxcore/blob/master/tools/jx_install.sh | bash
 ```
 
-The same script can be taken also from a shorter URL: [http://jxcore.com/xil.sh](http://jxcore.com/xil.sh), so the command would look this way:
+The same script can be taken also from the shorter URL: [http://jxcore.com/xil.sh](http://jxcore.com/xil.sh), so the command would look this way:
 
 ```bash
 $ curl http://jxcore.com/xil.sh | bash
@@ -68,9 +68,9 @@ $ curl http://jxcore.com/xil.sh | bash -s force sm
 * FreeBSD requires bash, and unzip installed in order for the script to work.
 * If you have `permission denied` message, make sure the user has root access. Try executing the command as `su`, or `sudo`:
 
-```bash
-$ curl http://jxcore.com/xil.sh | sudo bash
-```
+    ```bash
+    $ curl http://jxcore.com/xil.sh | sudo bash
+    ```
 
 # For Windows:
 
