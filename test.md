@@ -215,13 +215,13 @@ The `-sign` switch may receive few variations of values:
 
 - no value (which means `true`)
 
-> jx package helloworld.js "HelloWorld" --native -sign
+     > jx package helloworld.js "HelloWorld" --native -sign
 
-    This internally invokes the following command:
+     This internally invokes the following command:
 
-> signtool sign /a HelloWorld.exe
+     > signtool sign /a HelloWorld.exe
 
-    which automatically selects the best signing certificate. Please refer to `signtool sign /?` help.
+which automatically selects the best signing certificate. Please refer to `signtool sign /?` help.
 
 * file name of user's certificate
 
