@@ -115,7 +115,7 @@ Below example defines for the `-slim` option the same path in 3 ways (2 relative
 
 #### -native
 
-Boolean value. Default is `false`. See [boolean values](#boolean-values).
+Boolean value. Default is `false`. See also [boolean values](#boolean-values).
 
      > jx package helloworld.js "Hello World" -native
 
@@ -166,7 +166,7 @@ String value.
 
 #### -extract
 
-Boolean value. Default is `false`. See [boolean values](#boolean-values).
+Boolean value. Default is `false`. See also [boolean values](#boolean-values).
 
 When it's set to `true`, all package contents will be extracted at first run of the compiled package.
 There will be a new folder created with the name parameter.
@@ -174,14 +174,14 @@ All files and assets embedded inside the package will be saved with full directo
 
 #### -library
 
-Boolean value. Default is `true`. See [boolean values](#boolean-values).
+Boolean value. Default is `true`. See also [boolean values](#boolean-values).
 
 Value set to `true` means that JX package can be treated as a library and it can be used from inside another JX package (with `require()` method).
 Setting this value to `false` is a good way of preventing its usage as an external module (and then `require()` will not be possible).
 
 #### -fs_reach_sources
 
-Boolean value. Default is `true`. See [boolean values](#boolean-values).
+Boolean value. Default is `true`. See also [boolean values](#boolean-values).
 
 #### -preInstall or -preinstall
 
@@ -215,11 +215,11 @@ The `-sign` switch may receive few variations of values:
 
 * no value (which means `true`)
 
-    > jx package helloworld.js "HelloWorld" --native -sign
+> jx package helloworld.js "HelloWorld" --native -sign
 
     This internally invokes the following command:
 
-    > signtool sign /a HelloWorld.exe
+> signtool sign /a HelloWorld.exe
 
     which automatically selects the best signing certificate. Please refer to `signtool sign /?` help.
 
