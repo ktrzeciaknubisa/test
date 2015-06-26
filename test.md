@@ -213,7 +213,7 @@ This can work only if [Sign Tool](https://msdn.microsoft.com/en-us/library/8s9b9
 
 The `-sign` switch may receive few variations of values:
 
-* no value (which means `true`)
+- no value (which means `true`)
 
 > jx package helloworld.js "HelloWorld" --native -sign
 
