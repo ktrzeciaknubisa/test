@@ -20,8 +20,8 @@ instead of:
 
 You may specify none, one or more of the following options:
 
-* -add [file||folder[, file2||folder2, ...]]
-* -slim file||folder[, file2||folder2, ...]
+* -add [ file||folder [, file2||folder2, ... ]]
+* -slim file||folder [, file2||folder2, ... ]
 * JXP fields may be also provided here. See below for their description.
 
 The `jx package` command recursively scans the current folder and generates a `JXP` package information file based on all files in that directory.
@@ -213,13 +213,14 @@ This can work only if [Sign Tool](https://msdn.microsoft.com/en-us/library/8s9b9
 
 The `-sign` switch may receive few variations of values:
 
-- no value (which means `true`)
+* no value (which means `true`)
 
-     > jx package helloworld.js "HelloWorld" --native -sign
 
-     This internally invokes the following command:
+    > jx package helloworld.js "HelloWorld" --native -sign
 
-     > signtool sign /a HelloWorld.exe
+This internally invokes the following command:
+
+    > signtool sign /a HelloWorld.exe
 
 which automatically selects the best signing certificate. Please refer to `signtool sign /?` help.
 
