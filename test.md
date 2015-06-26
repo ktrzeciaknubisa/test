@@ -215,6 +215,7 @@ The `-sign` switch may receive few variations of values:
 
 * no value (which means `true`)
 
+For example:
 
     > jx package helloworld.js "HelloWorld" --native -sign
 
@@ -226,21 +227,25 @@ which automatically selects the best signing certificate. Please refer to `signt
 
 * file name of user's certificate
 
+For example:
+
     > jx package helloworld.js "HelloWorld" --native -sign "c:\mycert.pfx"
 
-    This internally invokes the following command:
+This internally invokes the following command:
 
     > signtool sign /f "c:\mycert.pfx" HelloWorld.exe
 
-    Signs the native package with provided certificate file.
-    However this will not work if the certificate requires a password, because it needs to be specified explicitly.
-    In this case you can use the next approach.
+Signs the native package with provided certificate file.
+However this will not work if the certificate requires a password, because it needs to be specified explicitly.
+In this case you can use the next approach.
 
 * signtool's command line parameters:
 
+For example:
+
     > jx package helloworld.js "HelloWorld" --native -sign "/f 'c:\mycert.pfx' /p password"
 
-    This internally invokes the following command:
+This internally invokes the following command:
 
     > signtool sign /f "c:\mycert.pfx" /p password HelloWorld.exe
 
