@@ -66,4 +66,4 @@ cp -rf ~/path/to/myrepo/jxcore-cordova ./
 
 This will just copy the jxcore-cordova folder instead of cloning it.
 
-You can also use automated script `install_and_run.sh`. More on this [here][test.md].
+You can also use automated script `install_and_run.sh`. More on this [here](test.md).
