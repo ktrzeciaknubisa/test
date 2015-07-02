@@ -1,7 +1,7 @@
 
 # Description
 
-The `install_and_run.sh` script automates the following tasks:
+The `install_and_run.sh` script automates the following tasks on **posix** platforms:
 
 1. creating cordova project
 2. downloading JXcore-cordova plugin
@@ -38,12 +38,30 @@ or
 $ ./install_and_run.sh "express performance sample"
 ```
 
-# Platform
+# Platforms
 
-By default the script runs the app on android platform, however yo can uncomment the last two lines to run it also for iOS:
+By default the script runs the app on android platform, however you can uncomment the last two lines to run it also for iOS:
 
 ```bash
 # or run on ios
 #cordova platforms add ios
 #cordova run ios
 ```
+
+$ Tips
+
+If you don't want to clone the jxcore-cordova repository each time you run the `install_and_run.sh` script, you may download it manually once, e.g.:
+
+```bash
+$ mkdir myrepo
+$ cd myrepo
+$ git clone https://github.com/jxcore/jxcore-cordova
+```
+
+and replace `git clone` command inside `install_and_run.sh` with:
+
+```bash
+cp -rf ~/path/to/myrepo/jxcore-cordova ./
+```
+
+This will just copy the jxcore-cordova folder instead of cloning it.
