@@ -149,7 +149,7 @@ Those are: `--company`, `--copyright`, `--description`, `--name` and `--version`
 
 #### --sign
 
-String value. It it used only when [-native](#-native) switch is set to `true`.
+String value. It it used only when [-native](#--native) switch is set to `true`.
 It can be used for signing the native executable with user's certificate after the package is created.
 
 This applies only for Windows platforms and can work only if [Sign Tool](https://msdn.microsoft.com/en-us/library/8s9b9yaz%28v=vs.110%29.aspx) is installed in the system
@@ -590,11 +590,11 @@ This parameter can be also used from the command-line: `--fs_reach_sources` as o
 
 #### native
 
-See the [-native](#-native) command-line switch.
+See the [-native](#--native) command-line switch.
 
 #### sign
 
-Ability to sign the native executable package. See the [`-sign`](#-sign) switch.
+Ability to sign the native executable package. See the [`-sign`](#--sign) switch.
 
 ### Supported file types
 
