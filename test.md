@@ -309,50 +309,50 @@ from `javascript_file` parameter (file name without an extension) - in this case
 
 Hence the two following calls are equivalent:
 
-> jx package helloWorld.js --name MyApp
-> jx package helloWorld.js MyApp
+    > jx package helloWorld.js --name MyApp
+    > jx package helloWorld.js MyApp
 
 #### version
 
 String value. Default "1.0".
 Can be also used from the command-line: `--version`, e.g.:
 
-> jx package helloWorld.js --version 1.0
+    > jx package helloWorld.js --version 1.0
 
 #### author
 
 String value. Optional.
 Can be also used from the command-line: `--author`, e.g.:
 
-> jx package helloWorld.js --author "John Doe"
+    > jx package helloWorld.js --author "John Doe"
 
 #### description
 
 String value. Optional.
 Can be also used from the command-line: `--description`, e.g.:
 
-> jx package helloWorld.js --description "My best app"
+    > jx package helloWorld.js --description "My best app"
 
 #### company
 
 String value. Optional.
 Can be also used from the command-line: `--company`, e.g.:
 
-> jx package helloWorld.js --company "My company"
+    > jx package helloWorld.js --company "My company"
 
 #### copyright
 
 String value. Optional.
 Can be also used from the command-line: `--copyright`, e.g.:
 
-> jx package helloWorld.js --copyright "My company"
+    > jx package helloWorld.js --copyright "My company"
 
 #### website
 
 String value. Optional.
 Can be also used from the command-line: `--website`, e.g:
 
-> jx package helloWorld.js --website "http://mydomain.com"
+    > jx package helloWorld.js --website "http://mydomain.com"
 
 #### startup
 
@@ -407,7 +407,7 @@ When the `extract` in JXP file parameter is boolean `true`, it enables the **ful
 
 You can achieve the same by using command-line parameter `--extract`, which accepts multiple [boolean values](#boolean-values), e.g.:
 
-> jx package helloWorld.js --extract
+    > jx package helloWorld.js --extract
 
 ##### Partial extraction
 
