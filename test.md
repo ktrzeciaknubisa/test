@@ -40,11 +40,12 @@ which will create the output JX package *HelloWorld.jx*.
 
 #### options
 
-You may specify none, one or more of the following options:
+You may specify none, one or more of the following for the `jx package` command:
 
-* -add [ file||folder [, file2||folder2, ... ]]
-* -slim file||folder [, file2||folder2, ... ]
-* -native
+* --add [ file||folder [, file2||folder2, ... ]]
+* --slim file||folder [, file2||folder2, ... ]
+* --native
+* --sign
 * JXP fields may be also provided here. See [File structure](#file-structure) for more information.
 
 All of the options may be provided with double dash prefix (e.g. `--add`) which satisfies the general convention for long name parameters.
@@ -78,7 +79,7 @@ Some of the switches may be provided as boolean values. Below is description of 
 > jx package helloWorld.js --extract something
 ```
 
-#### -add
+#### --add
 
 This optional parameter followed by file and/or folder names separated with commas - **explicitly adds** those files/folders into the final JX package.
 For example, you may want to package only certain files/folders located at current directory - not the whole its contents.
@@ -96,7 +97,7 @@ Yu can still combine `-add` and `-slim` together, e.g. to add a folder, but excl
 
      > jx package helloWorld.js "HelloWorld" --add node_modules --slim node_modules/express
 
-#### -slim
+#### --slim
 
 This optional parameter followed by file and/or folder names separated with commas - **prevents adding** those files/folders into the final JX package.
 
@@ -123,7 +124,7 @@ Below example defines for the `--slim` option the same path in 3 ways (2 relativ
 
      > jx package helloWorld.js "HelloWorld" --slim out,./out,/users/me/folder/out
 
-#### -native
+#### --native
 
 Boolean value. Default is `false`. See also [boolean values](#boolean-values).
 
@@ -146,7 +147,7 @@ On Windows:
 Additionally on Windows platforms certain file description details are written into the package's header information.
 Those are: `--company`, `--copyright`, `--description`, `--name` and `--version`.
 
-#### -sign
+#### --sign
 
 String value. It it used only when [-native](#-native) switch is set to `true`.
 It can be used for signing the native executable with user's certificate after the package is created.
@@ -198,7 +199,7 @@ When you already have a `JXP` project file (either created with `package` comman
 
     > jx compile project_file.jxp -native
 
-When `--native` switch is provided, it overrides `native` parameter value from a `JXP` file.
+When `--native` switch is provided with `jx compile` command, it overrides `native` parameter value from a `JXP` file.
 
 ## Hiding body of functions
 
@@ -301,41 +302,57 @@ Below you can find explanation for all supported fields:
 #### name
 
 String value.
-Can be also used from the command-line: `--name`, e.g. `jx package helloWorld.js --name MyApp`.
-This works the same as `jx package helloWorld.js MyApp`.
+Can be also used from the command-line: `--name`.
 
 This parameter is mandatory in JXP file, however optional in command-line. When not provided, the package name will be evaluated
 from `javascript_file` parameter (file name without an extension) - in this case of example above, this would be "helloWorld".
 
+Hence the two following calls are equivalent:
+
+> jx package helloWorld.js --name MyApp
+> jx package helloWorld.js MyApp
+
 #### version
 
 String value. Default "1.0".
-Can be also used from the command-line: `--version`, e.g. `jx package helloWorld.js --version 1.0`.
+Can be also used from the command-line: `--version`, e.g.:
+
+> jx package helloWorld.js --version 1.0
 
 #### author
 
 String value. Optional.
-Can be also used from the command-line: `--author`, e.g. `jx package helloWorld.js --author "John Doe"`.
+Can be also used from the command-line: `--author`, e.g.:
+
+> jx package helloWorld.js --author "John Doe"
 
 #### description
 
 String value. Optional.
-Can be also used from the command-line: `--description`, e.g. `jx package helloWorld.js --description "My best app"`.
+Can be also used from the command-line: `--description`, e.g.:
+
+> jx package helloWorld.js --description "My best app"
 
 #### company
 
 String value. Optional.
-Can be also used from the command-line: `--company`, e.g. `jx package helloWorld.js --company "My company"`.
+Can be also used from the command-line: `--company`, e.g.:
+
+> jx package helloWorld.js --company "My company"
 
 #### copyright
 
 String value. Optional.
-Can be also used from the command-line: `--copyright`, e.g. `jx package helloWorld.js --copyright "My company"`.
+Can be also used from the command-line: `--copyright`, e.g.:
+
+> jx package helloWorld.js --copyright "My company"
 
 #### website
 
 String value. Optional.
-Can be also used from the command-line: `--website`.
+Can be also used from the command-line: `--website`, e.g:
+
+> jx package helloWorld.js --website "http://mydomain.com"
 
 #### startup
 
@@ -388,7 +405,9 @@ When providing an array, you may benefit from `jxcore.utils.console.log()` forma
 
 When the `extract` in JXP file parameter is boolean `true`, it enables the **full extraction** (extracts the entire contents on first package execution).
 
-You can achieve the same by using command-line parameter `--extract`, which accepts multiple [boolean values](#boolean-values), e.g. `jx package helloWorld.js --extract`.
+You can achieve the same by using command-line parameter `--extract`, which accepts multiple [boolean values](#boolean-values), e.g.:
+
+> jx package helloWorld.js --extract
 
 ##### Partial extraction
 
