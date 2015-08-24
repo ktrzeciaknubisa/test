@@ -264,7 +264,9 @@ The JXP project file is a simple text file that contains package description wri
     "extract": {
         "what" :  "*.node,*.txt",
         "where" : "my_folder",
-        "message" : "Extracting now..."
+        "message" : "Extracting now...",
+        "verbose" : true,
+        "overwrite" : true
     },
     "output": "helloWorld.jx",
     "files": [
@@ -317,7 +319,7 @@ Hence the two following calls are equivalent:
 String value. Default "1.0".
 Can be also used from the command-line: `--version`, e.g.:
 
-    > jx package helloWorld.js --version 1.0
+    > jx package helloWorld.js --version 2.1
 
 #### author
 
@@ -378,11 +380,14 @@ or an object with extended data:
 ```js
 "extract" : {
     "what" : [
-        "*.node,*.txt",
+        "*.node",
+        "*.txt",
         "templates"
     ],
     "where" : "my_folder",
-    "message" : "Extracting now..."
+    "message" : "Extracting now...",
+    "verbose" : true,
+    "overwrite" : true
 }
 ```
 
@@ -401,6 +406,62 @@ When providing an array, you may benefit from `jxcore.utils.console.log()` forma
 "message" : [ "Extracting now...", "red+bold" ]
 ```
 
+The message can be also set through the command-line parameter: `--extract-message`, e.g:
+
+    > jx package helloWorld.js --extract --extract-message "Extracting now..."
+
+##### overwrite
+
+Boolean value. Default is `false`.
+Can be also used from the command-line: `--extract-overwrite`. See also [boolean values](#boolean-values).
+
+    > jx package helloWorld.js --extract --extract-overwrite
+
+When it's set to `true`, the package extraction overwrites any existing files.
+
+##### pre-actions
+
+Analogous to [preInstall](#preInstall) option, except that here you can define system commands to be executed right **before jx package extraction**, rather than execution.
+Commands are executed in the same order as the array is defined.
+
+The special keyword `JX_BINARY` is also respected and is replaced during the runtime with current `jx` executable path.
+
+If [verbose](#verbose) is also defined, than each of the pre-action step will be logged into the console window, otherwise only errors will be displayed.
+
+When providing this parameter from the command-line, use `--extract-pre-actions`:
+
+    > jx package helloWorld.js --extract-pre-actions "mkdir -p testfolder, JX_BINARY -jxv" --extract-verbose
+    > Executing `extract-pre-actions` steps:
+    > 1. 	 mkdir -p testfolder ... OK
+    > 2. 	 JX_BINARY -jxv ... OK
+    > v Beta-0.3.0.6
+
+The above set of command options will get converted into the following `extract` object in .JXP file:
+
+```js
+"extract": {
+    "pre-actions": [
+        "mkdir -p testfolder",
+        " JX_BINARY -jxv"
+    ],
+    "verbose": true
+}
+```
+
+##### post-actions
+
+Same as [pre-actions](#pre-actions), except that here you can define system commands to be executed right **after** jx package extraction.
+Can be also used from the command-line: `--extract-post-actions`.
+
+##### verbose
+
+Boolean value. Default is `false`.
+Can be also used from the command-line: `--extract-verbose`. See also [boolean values](#boolean-values).
+
+    > jx package helloWorld.js --extract --extract-verbose
+
+Value set to `true` displays the list of files being extracted.
+
 ##### Full Extraction
 
 When the `extract` in JXP file parameter is boolean `true`, it enables the **full extraction** (extracts the entire contents on first package execution).
@@ -414,6 +475,16 @@ You can achieve the same by using command-line parameter `--extract`, which acce
 ##### what
 
 The `what` parameter enables **partial contents extraction**. It is an array defining which paths or masks should be extracted.
+
+```js
+"extract" : {
+    "what" : [
+        "*.node",
+        "*.txt"
+    ]
+}
+```
+
 The partial extraction may work only if the contents is extracted into the application's root directory,
 thus the `where` parameter needs to be set with "./" value.
 
@@ -590,11 +661,11 @@ This parameter can be also used from the command-line: `--fs_reach_sources` as o
 
 #### native
 
-See the [-native](#--native) command-line switch.
+See the [--native](#--native) command-line switch.
 
 #### sign
 
-Ability to sign the native executable package. See the [`-sign`](#--sign) switch.
+Ability to sign the native executable package. See the [`--sign`](#--sign) switch.
 
 ### Supported file types
 
