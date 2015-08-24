@@ -421,7 +421,7 @@ When it's set to `true`, the package extraction overwrites any existing files.
 
 ##### pre-actions
 
-Analogous to [preInstall](#preInstall) option, except that here you can define system commands to be executed right **before jx package extraction**, rather than execution.
+Analogous to [preInstall](#preinstall) option, except that here you can define system commands to be executed right **before jx package extraction**, rather than execution.
 Commands are executed in the same order as the array is defined.
 
 The special keyword `JX_BINARY` is also respected and is replaced during the runtime with current `jx` executable path.
@@ -430,11 +430,13 @@ If [verbose](#verbose) is also defined, than each of the pre-action step will be
 
 When providing this parameter from the command-line, use `--extract-pre-actions`:
 
-    > jx package helloWorld.js --extract-pre-actions "mkdir -p testfolder, JX_BINARY -jxv" --extract-verbose
-    > Executing `extract-pre-actions` steps:
-    > 1. 	 mkdir -p testfolder ... OK
-    > 2. 	 JX_BINARY -jxv ... OK
-    > v Beta-0.3.0.6
+```bash
+> jx package helloWorld.js --extract-pre-actions "mkdir -p testfolder, JX_BINARY -jxv" --extract-verbose
+Executing `extract-pre-actions` steps:
+1. 	 mkdir -p testfolder ... OK
+2. 	 JX_BINARY -jxv ... OK
+v Beta-0.3.0.6
+```
 
 The above set of command options will get converted into the following `extract` object in .JXP file:
 
