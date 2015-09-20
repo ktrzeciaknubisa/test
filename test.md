@@ -570,4 +570,4 @@ The above example displays:
 2
 ```
 
-Restarting the application will make the numbers count from 0 again.
+Restarting the application will make the numbers count from 0 again. 
