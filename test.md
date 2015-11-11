@@ -24,7 +24,8 @@ Now open command prompt window and type:
 
 ```bash
 > cd c:\jxcore-cordova
-> jx io.jxcore.node.jx`
+> jx io.jxcore.node.jx
+```
 
 ##### 3. Install plugin
 
