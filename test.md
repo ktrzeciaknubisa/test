@@ -7,7 +7,7 @@ This project is intended to ;
 
 # Installation
 
-#### Visual Studio
+### Visual Studio
 
 ##### 1. Install JXcore
 
@@ -35,7 +35,7 @@ Now open command prompt window and type:
 * select **Local** radio button and browse for *c:\jxcore-cordova\io.jxcore.node*
 * click **Add** button
 
-#### Posix platforms
+### Posix platforms
 
 ##### 1. Install Cordova
 
@@ -50,15 +50,8 @@ Download JXcore from [jxcore.com/downloads](http://jxcore.com/downloads)
 
 In case you don't have `wget` or something similar installed,
 
-for unix:
-```
-sudo jx install -g download-cli
-
-```
-
-for windows:
-```
-jx install -g download-cli
+```bash
+$ sudo jx install -g download-cli
 ```
 
 ##### 4. Download `jxcore-cordova` binary into your Cordova/Phonegap project
