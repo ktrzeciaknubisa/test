@@ -31,9 +31,9 @@ Where options:
     --help                                        - displays this help info
 ```
 
-All of the commands are briefly explained below.
+**All the commands are briefly explained below.**
 
-You can also check each of the commands for detailed help:
+You can also check each of them for detailed help:
 
 ```bash
 $ jxc install --help
@@ -93,8 +93,7 @@ $ jxc sample list
 # Download
 
 Downloads (only) the latest version of the plugin is used, but does not install it into cordova application.
-Thus it may be called from any folder.
-
+Thus it may be called from any folder. This is useful when you want to add the plugin manually to the project (e.g. for Visual Studio solutions).
 
 ```bash
 $ jxc download
