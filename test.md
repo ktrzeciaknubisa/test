@@ -14,9 +14,7 @@ $ npm install -g jxc
 $ jx install -g jxc
 ```
 
-## Usage
-
-### Commands
+# Commands
 
 ```bash
 $ jxc --help
@@ -37,7 +35,7 @@ You can also check each of the commands for detailed help:
     > jxc install --help
 ```
 
-### `install`
+# Usage
 
 Go into your cordova application folder and type:
 
@@ -67,7 +65,7 @@ $ jxc install /some/path/io.jxcore.node.jx
 
 Type `jxc install --help` for more commands.
 
-### `install` with sample
+# Usage with sample
 
 You may also install the plugin and use a sample from its [sample](https://github.com/jxcore/jxcore-cordova/tree/master/sample) folder:
 
@@ -76,7 +74,7 @@ $ jxc install --sample express_perf
 $ cordova run
 ```
 
-### Switch sample
+# Switch sample
 
 Once you have the plugin installed, you may want only to switch the sample:
 
@@ -92,7 +90,29 @@ $ jxc sample list
 
 Type `jxc sample --help` for more commands.
 
-#### Caching downloaded files
+# Download
+
+Downloads (only) the latest version of the plugin is used, but does not install it into cordova application.
+Thus it may be called from any folder.
+
+
+```bash
+$ jxc download
+```
+
+By default the latest version of the plugin is used. However you may specify an exact version, e.g.:
+
+```bash
+$ jxc install 0.0.8
+```
+
+For list of other possible versions see http://jxcordova.cloudapp.net.
+
+Type `jxc download --help` for more commands.
+
+# Config
+
+### Caching downloaded files
 
 ##### Default caching folder
 
@@ -124,21 +144,3 @@ $ jxc config set cache readonly /some/folder/jxcore-cordova-release
 ```
 
 Type `jxc config --help` for more commands.
-
-### `download` only
-
-Downloads the latest version of the plugin is used, but does not install it into cordova application.
-Thus it may be called from any folder.
-
-
-```bash
-$ jxc download
-```
-
-By default the latest version of the plugin is used. However you may specify an exact version, e.g.:
-
-```bash
-$ jxc install 0.0.8
-```
-
-For list of other possible versions see http://jxcordova.cloudapp.net.
