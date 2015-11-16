@@ -14,7 +14,7 @@ $ npm install -g jxc
 $ jx install -g jxc
 ```
 
-# Usage
+## Usage
 
 ### Commands
 
