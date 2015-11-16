@@ -37,7 +37,7 @@ You can also check each of the commands for detailed help:
     > jxc install --help
 ```
 
-### Plugin installation
+### `install`
 
 Go into your cordova application folder and type:
 
@@ -67,7 +67,7 @@ $ jxc install /some/path/io.jxcore.node.jx
 
 Type `jxc install --help` for more commands.
 
-### Plugin installation with sample
+### `install` with sample
 
 You may also install the plugin and use a sample from its [sample](https://github.com/jxcore/jxcore-cordova/tree/master/sample) folder:
 
@@ -92,7 +92,7 @@ $ jxc sample list
 
 Type `jxc sample --help` for more commands.
 
-### Caching downloaded files
+#### Caching downloaded files
 
 ##### Default caching folder
 
@@ -125,7 +125,7 @@ $ jxc config set cache readonly /some/folder/jxcore-cordova-release
 
 Type `jxc config --help` for more commands.
 
-### Only download
+### `download` only
 
 Downloads the latest version of the plugin is used, but does not install it into cordova application.
 Thus it may be called from any folder.
