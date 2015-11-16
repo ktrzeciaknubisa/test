@@ -124,3 +124,21 @@ $ jxc config set cache readonly /some/folder/jxcore-cordova-release
 ```
 
 Type `jxc config --help` for more commands.
+
+### Only download
+
+Downloads the latest version of the plugin is used, but does not install it into cordova application.
+Thus it may be called from any folder.
+
+
+```bash
+$ jxc download
+```
+
+By default the latest version of the plugin is used. However you may specify an exact version, e.g.:
+
+```bash
+$ jxc install 0.0.8
+```
+
+For list of other possible versions see http://jxcordova.cloudapp.net.
