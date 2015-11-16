@@ -29,10 +29,14 @@ Where command:
 
 Where options:
     --help                                        - displays this help info
+```
+
+All of the commands are briefly explained below.
 
 You can also check each of the commands for detailed help:
 
-    > jxc install --help
+```bash
+$ jxc install --help
 ```
 
 # Usage
@@ -63,8 +67,6 @@ You can also install a plugin from a local package by providing its path explici
 $ jxc install /some/path/io.jxcore.node.jx
 ```
 
-Type `jxc install --help` for more commands.
-
 # Usage with sample
 
 You may also install the plugin and use a sample from its [sample](https://github.com/jxcore/jxcore-cordova/tree/master/sample) folder:
@@ -76,7 +78,7 @@ $ cordova run
 
 # Switch sample
 
-Once you have the plugin installed, you may want only to switch the sample:
+Once you have the plugin installed, you may want to only switch the sample:
 
 ```bash
 $ jxc sample express_perf
@@ -87,8 +89,6 @@ The list of available samples:
 ```bash
 $ jxc sample list
 ```
-
-Type `jxc sample --help` for more commands.
 
 # Download
 
@@ -107,8 +107,6 @@ $ jxc install 0.0.8
 ```
 
 For list of other possible versions see http://jxcordova.cloudapp.net.
-
-Type `jxc download --help` for more commands.
 
 # Config
 
@@ -143,4 +141,3 @@ Now from your cordova application folder set the path once:
 $ jxc config set cache readonly /some/folder/jxcore-cordova-release
 ```
 
-Type `jxc config --help` for more commands.
