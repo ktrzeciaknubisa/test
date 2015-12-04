@@ -293,7 +293,7 @@ process.on('resume', function() {
 Occurs whenever network connection status has been changed on mobile device (e.g. WiFi has been turned on or Plane Mode has been enabled).
 
 The `status` is a string containing one of the following: `WiFi`, `WWAN`, `NotConnected`.
-See also [Mobile.getConnectionStatus](#Mobile.getConnectionStatus)
+See also [Mobile.getConnectionStatus](#mobilegetconnectionstatus)
 
 ```js
 process.on('connectionStatusChanged', function(status) {
