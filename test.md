@@ -206,7 +206,7 @@ Visit www/jxcore folder and install the node modules there. It's adviced to use 
 command to install node modules from npm.
 
 For example
-```
+```bash
 // UNIX
 www/jxcore > sudo jx install jxm --autoremove "*.gz" 
 
@@ -227,7 +227,7 @@ If you are okay with using Mobile specific API see Mobile.GetDocumentsPath below
 #### Mobile.getDocumentsPath
 Returns the location for Application (specific) writable folder.
 
-```
+```js
 Mobile.getDocumentsPath(function(err, location) {
   if (err)
     console.error("Error", err);
@@ -243,7 +243,7 @@ location.
 #### Mobile.getConnectionStatus
 Returns device's connection status
 
-```
+```js
 Mobile.getConnectionStatus(function(err, status) {
   if (status.NotConnected)
     console.log("No internet connection");
@@ -257,7 +257,7 @@ Mobile.getConnectionStatus(function(err, status) {
 #### Mobile.getDeviceName
 Returns device's manufacturer and model name
 
-```
+```js
 Mobile.getDeviceName(function(err, name) {
   if (err)
     console.error("Something bad has happened");
@@ -310,7 +310,7 @@ for iOS and update `OnError` behavior
   - JavaScript is a single threaded language. Don't call the referenced JS methods from 
   other threads. 
 
-```
+```js
   Mobile('fromJXcore').registerToNative(function(param1, param2){
     // this method is reachable from Java or ObjectiveC
     // OBJ-C : [JXcore callEventCallback:@"fromJXcore" withParams:arr_parms];
