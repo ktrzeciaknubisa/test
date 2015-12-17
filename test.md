@@ -1,325 +1,280 @@
-[Node.JS](https://nodejs.org) plugin for Apache Cordova (built on [JXcore](https://github.com/jxcore/jxcore))
+**Featured updates:**
 
-# Goals
-This project is intended to ;
- - create an easy to use node.js plugin for Apache Cordova (Android, iOS)
- - show JXcore's embedding interface in details.
 
-# Installation
+- crypto publicEncrypt and privateDecrypt added 
 
-### 1. Install Apache Cordova
+- Shared Memory Store, Buffer Type Support GH [#716](https://github.com/jxcore/jxcore/issues/716) 
 
-If you don't have **Cordova** installed, follow the steps from [this link](https://cordova.apache.org/#getstarted)
-to install Apache Cordova.
+- ECDH ported from 0.12.x GH [#619](https://github.com/jxcore/jxcore/issues/619) 
 
-### 2. Install jxc tool
+- Multiple engine version support 
+    This update brings v8 3.28 support to comply with Chakra shim on Win
+    RT.
 
-```bash
-$ npm install -g jxc
-```
+- packaging format changed to binary GH [#508](https://github.com/jxcore/jxcore/issues/508) 
 
-or if you have JXcore installed:
+- Windows UWP support 
 
-```bash
-$ jx install -g jxc
-```
+- Windows IOT and Mobile support 
 
-On posix platform you may need to run it as sudo.
 
-### 3. Install plugin
+**Issues:**
 
-Assuming your Cordova JXcore application is located under `/hello` folder, go under `/hello` folder.
 
-```bash
-$ jxc install
-```
+- SM: Error tooling compatibility updates GH [#728](https://github.com/jxcore/jxcore/issues/728) 
+    With this commit, SM Error tooling should be fairly compatible with v8
 
-By default the latest version of the plugin is used. However you may specify an exact version, e.g.:
+- [SM] stack[0].getFileName() missing GH [#728](https://github.com/jxcore/jxcore/issues/728) 
 
-```bash
-$ jxc install 0.0.8
-```
+- deprecate jx-ni JX_Initialize GH [#723](https://github.com/jxcore/jxcore/issues/723) 
 
-For list of other possible versions see http://jxcordova.cloudapp.net.
+- SM: ghost cannot start due to sqlite error GH [#540](https://github.com/jxcore/jxcore/issues/540) 
 
-### Visual Studio
+- Segfault (asm.js + spidermonkey) GH [#624](https://github.com/jxcore/jxcore/issues/624) 
 
-* Download the latest package
-    * either manually (e.g. http://jxcordova.cloudapp.net/0.0.8/io.jxcore.node.jx and save into e.g. *c:\jxcore-cordova*)
-    * or through `jxc download` command (in command prompt window started in e.g. *c:\jxcore-cordova*)
-* open your cordova solution in Visual Studio
-* double click *config.xml* in Solution Explorer
-* select **Plugins** and then **Custom** tab
-* select **Local** radio button and browse for *c:\jxcore-cordova\io.jxcore.node*
-* click **Add** button
+- HTTP IncomingMessage constructor not recognized GH [#681](https://github.com/jxcore/jxcore/issues/681) 
 
+- subthreads waiting for package to load. Fixes GH [#709](https://github.com/jxcore/jxcore/issues/709) 
 
-Once everything is set and you have added jxcore-cordova extension, create a folder named 
-`jxcore` right under `www`
+- Remove max compression ratio limit GH [#703](https://github.com/jxcore/jxcore/issues/703) 
 
-`www/jxcore/app.js` is your entry point to JXcore's JS.
+- allow --prefix to be both relative and absolute. Applies to GH [#657](https://github.com/jxcore/jxcore/issues/657). Closes GH [#675](https://github.com/jxcore/jxcore/issues/675) 
 
-Node modules should go in the `www/jxcore/node_modules` folder.
+- async readFile catches sync exception. Closes GH [#634](https://github.com/jxcore/jxcore/issues/634) 
 
-**Important Steps for the First Timers**  
-Under the sample folder you will find `express sample` application. There you have the entire 
-`www` folder that you can use instead of the `www` folder under cordova project root folder. 
-Replace `www` folder from the project's root to the one under the `sample/express sample`.
+- Fix when stdout and stderr don't use file descriptors 1 & 2, issue GH [#608](https://github.com/jxcore/jxcore/issues/608). 
+    Detect when running in an environment that doesn't use file descriptors 1 & 2 for stdout and stderr streams, such as Windows GUI applications. Using those descriptors will throw an exception at engine startup, which would prevent the source file given to JX_DefineMainFile from running.
 
-You can also use the automated script on posix platforms: `install_and_run.sh`. More on this 
-[here](install_and_run.md).
+- More detailed stack traces from threads GH [#655](https://github.com/jxcore/jxcore/issues/655) 
 
-Are you are looking for a minimalistic sample? follow the steps below;  
- 1. Under the `sample/www` folder of this repo, you will find `index.html`. This sample file 
- shows how to integrate JXcore interface into Cordova client side. Prior to installing 
-    JXcore plugin, you should update Cordova's index.html as shown from this sample file.
+- use ./ rather than / for DESTDIR. Closes GH [#657](https://github.com/jxcore/jxcore/issues/657) 
 
- 2. This plugin expects you to have a folder named `jxcore` under `www` folder. The sample 
- `index.html` tries to load `app.js` from this folder. You can copy `sample/www/` folder 
- into `www` to run the basic demo.
+- SM: fixes unicode issue GH [#641](https://github.com/jxcore/jxcore/issues/641) 
+    Reduces the number of memory allocation requests
 
+- android warning for global modules installation as root. Applies to GH [#628](https://github.com/jxcore/jxcore/issues/628) 
 
-!In case you have a problem with installing the plugin. You may follow the steps below;
-(be careful though since this trick removes the existing platforms and installs them back)
+- ~/.jx and ~/.npm proper ownership with `sudo jx install`. Closes GH [#645](https://github.com/jxcore/jxcore/issues/645) 
 
-```bash
-cordova platform remove ios
-cordova platform remove android
-cordova plugins remove io.jxcore.node
-cordova plugins add io.jxcore.node
-cordova platform add ios
-cordova platform add android
-```
+- fix finding jx.config / node.config on Windows. Closes GH [#642](https://github.com/jxcore/jxcore/issues/642) 
 
-Now you can visit `platforms/ios` or `platforms/android` folders and open Xcode project file 
-or import the android project from Eclipse.
+- fix for jx --debug GH [#623](https://github.com/jxcore/jxcore/issues/623) 
 
-# Updating JXcore binaries [optional]
+- _cmp() accept buffer GH [#508](https://github.com/jxcore/jxcore/issues/508) 
 
-Below are the steps to be taken if you want to update JXcore binaries in your Cordova JXcore 
-application. They all should be called prior to `cordova plugin add` command. This step is 
-optional. We keep the core binaries are updated. 
-
-1. Rebuild JXcore binaries: [Compile as a Static Library](https://github.com/jxcore/jxcore/blob/master/doc/Android_Compile.md#compile-as-a-static-library)
-2. Refresh `jxcore-cordova/src/android/jxcore-binaries` folder contents:
-
-    ```bash
-    $ cd /my/cordova/app
-    $ git clone https://github.com/jxcore/jxcore-cordova.git
-    $ rm -f ./jxcore-cordova/src/android/jxcore-binaries/*
-    $ cp -f /jxcore/repo/out_android/android/bin/* jxcore-cordova/src/android/jxcore-binaries/
-    ```
-
-3. Recompile .so files
-
-    ```bash
-    $ cd jxcore-cordova/src/android/jni
-    $ ~/android-ndk-path/ndk-build
-    ```
-
-4. Add/re-add the plugin/platform
-
-    ```bash
-    $ cd ../../../../
-    $ cordova plugin add jxcore-cordova/
-    $ cordova platforms add android
-    ```
-
-5. You may run the app now
-
-    ```bash
-    $ cordova run
-    ```
-
-# Usage
-
-**JavaScript on UI side works on top of Cordova's webUI. JXcore's JavaScript is a separate instance.**
-
-So you need an API to communicate between Cordova JS to JXcore JS.
-
-#### Cordova to JXcore
-These API methods are used on the side of Apache Cordova (for example, in the main `index.html` 
-of your Cordova application).
-
-##### Sharing a JavaScript function from Cordova to JXcore
-```js
-jxcore(name_of_the_function).register(a_function_to_register);
-```
-Example:
-```js
-jxcore('alert').register(function(msg){ alert(msg); });
-```
-
-##### Calling a JavaScript function (shared on JXcore side) from Cordova
-```js
-jxcore(name_of_the_function).call(params_to_send..., callback);
-```
-Example:
-```js
-jxcore('asyncPing').call('Hello', function(p1, p2, p3...){ });
-```
-
-#### JXcore to Cordova
-These API methods are used on the side of JXcore (for example, in the main `app.js` of your 
-application based on Node API).
-
-##### Sharing a synchronous JavaScript function from JXcore to Cordova
-```js
-Mobile(name_of_the_function).registerSync(a_function_to_register);
-```
-This method expects the registered function to be synchronous (i.e. to immediately return a value). 
-
-Example:
-```js
-Mobile('syncPing').registerSync(function(msg){ return msg + ' pong'; });
-```
-
-##### Sharing an asynchronous JavaScript function from JXcore to Cordova
-```js
-Mobile(name_of_the_function).registerAsync(a_function_to_register);
-```
-This method expects the registered function to be asynchronous (i.e. to return some value using a callback). 
-
-Example:
-```js
-Mobile('asyncPing').registerAsync(function(msg, callback){ callback(msg + ' pong') });
-```
-
-##### Calling a JavaScript function (shared on Cordova side) from JXcore
-
-```js
-Mobile(name_of_the_function).call(params...);
-```
-Example:
-```js
-Mobile('log').call(msg);
-```
-
-#### JXcore to JAVA / Objective-C (vice versa)
-You may also define JXcore JS side methods those you want to call from Java / Obj-C.
-
-If you need a JS side method that you want to call multiple times use below approach instead 
-depending on a method callback id.
-
-#### How to Install Node Modules
-Visit www/jxcore folder and install the node modules there. It's adviced to use 'jx install' 
-command to install node modules from npm.
-
-For example
-```bash
-// UNIX
-www/jxcore > sudo jx install jxm --autoremove "*.gz" 
-
-// Windows
-www/jxcore > jx install jxm --autoremove "*.gz"
-```
-
-'--autoremove "*.gz"' will be removing the gz files from modules folder. Android APK doesn't 
-allow you to put .gz files into application's assets.
-
-#### Where To Save your Files (Write access on mobile targets) EROFS error ?
-Consider using either `process.userPath` or `require('os').tmpdir()` to get the Documents 
-(on ios) or a folder you have the write access. `process.cwd()` or `__dirname` may not 
-target a folder that you have the write access!
-
-If you are okay with using Mobile specific API see Mobile.GetDocumentsPath below;
-
-#### Mobile.getDocumentsPath
-Returns the location for Application (specific) writable folder.
-
-```js
-Mobile.getDocumentsPath(function(err, location) {
-  if (err)
-    console.error("Error", err);
-  else
-    console.log("Documents location", location);
-});
-```
-
-Android and iOS file systems behave differently. Android OS supports external persistent 
-storage. If you want to store a persistent information on Android OS, consider using sdcard 
-location.
-
-#### Mobile.getConnectionStatus
-Returns device's connection status
-
-```js
-Mobile.getConnectionStatus(function(err, status) {
-  if (status.NotConnected)
-    console.log("No internet connection");
-  else if (status.WiFi)
-    console.log("WiFi");
-  else if (status.WWAN)
-    console.log("Mobile Connection");
-});
-```
-
-#### Mobile.getDeviceName
-Returns device's manufacturer and model name
-
-```js
-Mobile.getDeviceName(function(err, name) {
-  if (err)
-    console.error("Something bad has happened");
-  else 
-    console.log("Device name", name)
-});
-```
-
-#### JXcore side events
-
-* pause
-
-Occurs whenever an application is paused on the device (e.g. goes to the background).
-
-```js
-process.on('pause', function() {
-  console.log('pause');
-});
-```
-
-* resume
-
-Occurs whenever an application will start interacting with the user (e.g. comes back from the background).
-
-```js
-process.on('resume', function() {
-  console.log('resume');
-});
-```
-
-* connectionStatusChanged(status)
-
-Occurs whenever network connection status has been changed on mobile device (e.g. WiFi has been turned on or Plane Mode has been enabled).
-
-The `status` is a string containing one of the following: `WiFi`, `WWAN`, `NotConnected`.
-See also [Mobile.getConnectionStatus](#mobilegetconnectionstatus)
-
-```js
-process.on('connectionStatusChanged', function(status) {
-  console.log('new network status:', status);
-});
-```
-
-#### JS Error Tracking
-If you want to customize JS side errors, visit `JXMobile.java` for Android and `JXMobile.m` 
-for iOS and update `OnError` behavior
-
-#### Remarks
-  - JXcore cordova interface doesn't keep the reference for a callback id once it's used.
-  - JavaScript is a single threaded language. Don't call the referenced JS methods from 
-  other threads. 
-
-```js
-  Mobile('fromJXcore').registerToNative(function(param1, param2){
-    // this method is reachable from Java or ObjectiveC
-    // OBJ-C : [JXcore callEventCallback:@"fromJXcore" withParams:arr_parms];
-    // Java  : jxcore.CallJSMethod("fromJXcore", arr_params);
-  });
-```
-
-See JXcoreExtension.java / JXcoreExtension.m / .h for sample Java/Obj-C definitions.
-
-# Contribution
-If you see a mistake / bug or you think there is a better way to do the things, feel free 
-to contribute. All the contributions are considered under MIT license.
+- fix test-chdir for el-capitan GH [#641](https://github.com/jxcore/jxcore/issues/641) 
+    credit goes to @silverwind
+    https://github.com/nodejs/node/commit/ddf258376dd35d5813255b921701a75b28
+    611979
+
+- Efficiently repair reading of signed files GH [#583](https://github.com/jxcore/jxcore/issues/583) 
+    Uses a new method for finding the data to load; Fixes an issue with
+    signing a Windows executable
+
+- test: handle error message from new V8 engine in test-domain.js (ref: GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
+
+- src: fix possible crash in node_crypto.cc:EIO_PBKDF2After() variants (GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
+
+- src: fix TCPWrap::InstantiateCOM() in case of NULL argument (ref: GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
+
+- command line --sign support restored. Applies to GH [#583](https://github.com/jxcore/jxcore/issues/583) 
+
+- net-tcp test much improved. Applies to GH [#205](https://github.com/jxcore/jxcore/issues/205) 
+
+- stream._writev method added GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+
+- jxm java client doc update on object reading. closes jxcore/jxmGH [#29](https://github.com/jxcore/jxcore/issues/29) 
+
+- reset event added to repl GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+
+- lookup event added to net GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+
+- path.isAbsolute method added GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+
+- setDefaultEncoding method added to writable stream GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+
+- cork and uncork methods added in writable stream GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+
+
+**Other:**
+
+
+- uv: assert for a wrongly initialized instance 
+
+- v8: use isolate from commons 
+
+- module: minor perf. update 
+    - proxy debug output to console.error
+    - do not pre-compile(JSON.stringify) the arguments
+
+- remove customLogInterface from console 
+    This was pre mobile-support implementation and no longer needed
+
+- jx-ni: add JXEngine reference for internal sub instances 
+
+- jx-ni: New Method - JX_SetNativeMethod 
+
+- give exec right to jx-ni run-tests script 
+
+- jx-ni: fix GetGlobal and GetProcess scoping 
+    After this fix, both methods are callable without being inside a
+    function call.
+
+- fix leaking nanosecond issue on Posix 
+
+- omit space in version string 
+
+- define CC and CCX explicitly from node 4.x 
+
+- v8-328: Use prime type index for indexedProperties 
+
+- jx-ni: add assert message (initialize after shutdown) 
+
+- Add Android ARM64 compilation option 
+
+- SM build no longer needs `which` installation 
+
+- uv-unix: implement proxy uv_run for ABI compatibility 
+
+- log: do not force assert 
+
+- Windows: log to temp folder if no std or debugger available 
+
+- SM: prevent VS2015 resolving wrong include path 
+
+- Prevent crash WinIOT failing to get processor name 
+    double check the result for GetLastError
+
+- winonecore: interface compatibility for logging 
+
+- Chakra: Enable debugger [initial] 
+
+- SM: force static JS API [for method signatures on Windows] 
+
+- SM: win-onecore use trampoline-none 
+
+- SM: do not force char16_t redefinition for VS2015+ [fix condition] 
+
+- force include windows.h for debugger logging 
+
+- add leveldown-mobile to win-onecore builds 
+
+- ECDH ported from 0.12.x 
+
+- Update test_rsa_privkey_encrypted.pem 
+
+- v8-328: Debugger support 
+
+- use char pointer for memory store 
+
+- travis: do not force jslint on travis 
+
+- utf_man: use const for constant variable 
+
+- SM: VS2015+ do not force char16_t 
+
+- update leveldown-mobile for UWP support 
+
+- jx install: support spaces in HOME_PATH 
+
+- v8.314: TO_LOCAL_ARRAY Persistent + V8Object together 
+    Previous implementations support either Persistent or Object etc.
+    (Local, Handle) types.
+
+- open-wrt: simplify apt-get install 
+
+- open-wrt: use exec() instead of cmdSync() for git clone 
+
+- v8: fix isolate deadlock 
+
+- Windows: share path conf. with WinRT 
+
+- WinRT: module boost resolve 
+
+- WinRT: fs basic simulate realpathSync 
+
+- WinRT: redirect core.console to debug window 
+
+- use bigger log buffer 
+
+- combine console loggers & make UWP logging available globally 
+
+- llvm-format on util files 
+
+- UWP support final 
+
+- WinRT: do not include ole32 
+
+- WinRT:  do not use default libs 
+
+- WinRT: log to debug Window (all jxcore logs) 
+
+- no pipe-creation for WinRT 
+
+- openssl-no-asm by default for WinRT 
+
+- disable UnregisterWait for WinRT 
+
+- log to debug window for WinRT 
+
+- sqlite winrt 
+
+- WinOneCore: Do not use RegisterWaitForSingleObject 
+
+- disable spawn for win one core 
+
+- sqlite is updated to 3.9.1.0 
+
+- win-onecore command line switch 
+
+- handle zero-length Buffer(0) 
+    It is a perfectly valid scenario in both Javascript and C/C++ to have a
+    buffer of zero length, so we must handle this. (strlen(nullptr) would
+    crash)
+
+- update memory-leak for v8 3.2+ 
+
+- v8-3+ compatibility : do not use persistent argument 
+
+- jxcore now has built-in uwp interface 
+
+- uv-pipe: prevent assert crash for winonecore not supported 
+
+- replace NAN to JX macro 
+
+- Run simple test suite on both engines in Travis CI 
+    Skip a couple of troublesome tests in Travis CI
+    NOTE: A shell trick is used here since Travis CI only seems to check the result
+    of the last command in the script: section.
+
+- added JX_GetBuffer() to native interface for accessing Buffers directly 
+
+- jxcore runs on WindowsARM 
+
+- vcbuild: WinARM doesn't support openssl-asm 
+
+- uv: force define __arm__ for WinARM 
+
+- uv: winthreads pthread force cancel sync form ARM 
+
+- vcbuild:Windows one-core option 
+
+- lib: cleanup trailing whitespace in lib/jx/_jx_incoming.js 
+
+- lib: fix jslint errors (also exclude lib/jx/_jx_marker.js from jslint again) 
+
+- openssl win10 SDK fix 
+
+- don't force define timespec for VS2015+ 
+
+- openssl win-arm 
+
+- Added arch build scripts 
+
+- jxcore tests: assert in thread does not cause thread restarting 
+
+- V8:fix envQuery 
+
+- do not double persistent to local 
+
+
