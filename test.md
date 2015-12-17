@@ -9,8 +9,7 @@
 
 - Multiple engine version support 
 
-    This update brings v8 3.28 support to comply with Chakra shim on Win
-    RT.
+    *This update brings v8 3.28 support to comply with Chakra shim on Win RT.*
 
 - packaging format changed to binary GH [#508](https://github.com/jxcore/jxcore/issues/508) 
 
@@ -19,11 +18,13 @@
 - Windows IOT and Mobile support 
 
 
+
 **Issues:**
 
 
 - SM: Error tooling compatibility updates GH [#728](https://github.com/jxcore/jxcore/issues/728) 
-    With this commit, SM Error tooling should be fairly compatible with v8
+
+    *With this commit, SM Error tooling should be fairly compatible with v8*
 
 - [SM] stack[0].getFileName() missing GH [#728](https://github.com/jxcore/jxcore/issues/728) 
 
@@ -44,14 +45,16 @@
 - async readFile catches sync exception. Closes GH [#634](https://github.com/jxcore/jxcore/issues/634) 
 
 - Fix when stdout and stderr don't use file descriptors 1 & 2, issue GH [#608](https://github.com/jxcore/jxcore/issues/608). 
-    Detect when running in an environment that doesn't use file descriptors 1 & 2 for stdout and stderr streams, such as Windows GUI applications. Using those descriptors will throw an exception at engine startup, which would prevent the source file given to JX_DefineMainFile from running.
+
+    *Detect when running in an environment that doesn't use file descriptors 1 & 2 for stdout and stderr streams, such as Windows GUI applications. Using those descriptors will throw an exception at engine startup, which would prevent the source file given to JX_DefineMainFile from running.*
 
 - More detailed stack traces from threads GH [#655](https://github.com/jxcore/jxcore/issues/655) 
 
 - use ./ rather than / for DESTDIR. Closes GH [#657](https://github.com/jxcore/jxcore/issues/657) 
 
 - SM: fixes unicode issue GH [#641](https://github.com/jxcore/jxcore/issues/641) 
-    Reduces the number of memory allocation requests
+
+    *Reduces the number of memory allocation requests*
 
 - android warning for global modules installation as root. Applies to GH [#628](https://github.com/jxcore/jxcore/issues/628) 
 
@@ -64,13 +67,15 @@
 - _cmp() accept buffer GH [#508](https://github.com/jxcore/jxcore/issues/508) 
 
 - fix test-chdir for el-capitan GH [#641](https://github.com/jxcore/jxcore/issues/641) 
-    credit goes to @silverwind
+
+    *credit goes to @silverwind
     https://github.com/nodejs/node/commit/ddf258376dd35d5813255b921701a75b28
-    611979
+    611979*
 
 - Efficiently repair reading of signed files GH [#583](https://github.com/jxcore/jxcore/issues/583) 
-    Uses a new method for finding the data to load; Fixes an issue with
-    signing a Windows executable
+
+    *Uses a new method for finding the data to load; Fixes an issue with
+    signing a Windows executable*
 
 - test: handle error message from new V8 engine in test-domain.js (ref: GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
 
@@ -97,6 +102,7 @@
 - cork and uncork methods added in writable stream GH [#571](https://github.com/jxcore/jxcore/issues/571) 
 
 
+
 **Other:**
 
 
@@ -105,11 +111,13 @@
 - v8: use isolate from commons 
 
 - module: minor perf. update 
-    - proxy debug output to console.error
-    - do not pre-compile(JSON.stringify) the arguments
+
+    *- proxy debug output to console.error
+    - do not pre-compile(JSON.stringify) the arguments*
 
 - remove customLogInterface from console 
-    This was pre mobile-support implementation and no longer needed
+
+    *This was pre mobile-support implementation and no longer needed*
 
 - jx-ni: add JXEngine reference for internal sub instances 
 
@@ -118,8 +126,9 @@
 - give exec right to jx-ni run-tests script 
 
 - jx-ni: fix GetGlobal and GetProcess scoping 
-    After this fix, both methods are callable without being inside a
-    function call.
+
+    *After this fix, both methods are callable without being inside a
+    function call.*
 
 - fix leaking nanosecond issue on Posix 
 
@@ -144,7 +153,8 @@
 - SM: prevent VS2015 resolving wrong include path 
 
 - Prevent crash WinIOT failing to get processor name 
-    double check the result for GetLastError
+
+    *double check the result for GetLastError*
 
 - winonecore: interface compatibility for logging 
 
@@ -179,8 +189,8 @@
 - jx install: support spaces in HOME_PATH 
 
 - v8.314: TO_LOCAL_ARRAY Persistent + V8Object together 
-    Previous implementations support either Persistent or Object etc.
-    (Local, Handle) types.
+
+    *Previous implementations support either Persistent or Object etc. (Local, Handle) types.*
 
 - open-wrt: simplify apt-get install 
 
@@ -229,9 +239,10 @@
 - win-onecore command line switch 
 
 - handle zero-length Buffer(0) 
-    It is a perfectly valid scenario in both Javascript and C/C++ to have a
+
+    *It is a perfectly valid scenario in both Javascript and C/C++ to have a
     buffer of zero length, so we must handle this. (strlen(nullptr) would
-    crash)
+    crash)*
 
 - update memory-leak for v8 3.2+ 
 
@@ -244,9 +255,10 @@
 - replace NAN to JX macro 
 
 - Run simple test suite on both engines in Travis CI 
-    Skip a couple of troublesome tests in Travis CI
+
+    *Skip a couple of troublesome tests in Travis CI
     NOTE: A shell trick is used here since Travis CI only seems to check the result
-    of the last command in the script: section.
+    of the last command in the script: section.*
 
 - added JX_GetBuffer() to native interface for accessing Buffers directly 
 
@@ -277,5 +289,6 @@
 - V8:fix envQuery 
 
 - do not double persistent to local 
+
 
 
