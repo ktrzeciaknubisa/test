@@ -3,15 +3,15 @@
 
 - crypto publicEncrypt and privateDecrypt added 
 
-- Shared Memory Store, Buffer Type Support GH [#716](https://github.com/jxcore/jxcore/issues/716) 
+- Shared Memory Store, Buffer Type Support [GH #716](https://github.com/jxcore/jxcore/issues/716) 
 
-- ECDH ported from 0.12.x GH [#619](https://github.com/jxcore/jxcore/issues/619) 
+- ECDH ported from 0.12.x [GH #619](https://github.com/jxcore/jxcore/issues/619) 
 
 - Multiple engine version support 
 
     *This update brings v8 3.28 support to comply with Chakra shim on Win RT.*
 
-- packaging format changed to binary GH [#508](https://github.com/jxcore/jxcore/issues/508) 
+- packaging format changed to binary [GH #508](https://github.com/jxcore/jxcore/issues/508) 
 
 - Windows UWP support 
 
@@ -22,84 +22,84 @@
 **Issues:**
 
 
-- SM: Error tooling compatibility updates GH [#728](https://github.com/jxcore/jxcore/issues/728) 
+- SM: Error tooling compatibility updates [GH #728](https://github.com/jxcore/jxcore/issues/728) 
 
     *With this commit, SM Error tooling should be fairly compatible with v8*
 
-- [SM] stack[0].getFileName() missing GH [#728](https://github.com/jxcore/jxcore/issues/728) 
+- [SM] stack[0].getFileName() missing [GH #728](https://github.com/jxcore/jxcore/issues/728) 
 
-- deprecate jx-ni JX_Initialize GH [#723](https://github.com/jxcore/jxcore/issues/723) 
+- deprecate jx-ni JX_Initialize [GH #723](https://github.com/jxcore/jxcore/issues/723) 
 
-- SM: ghost cannot start due to sqlite error GH [#540](https://github.com/jxcore/jxcore/issues/540) 
+- SM: ghost cannot start due to sqlite error [GH #540](https://github.com/jxcore/jxcore/issues/540) 
 
-- Segfault (asm.js + spidermonkey) GH [#624](https://github.com/jxcore/jxcore/issues/624) 
+- Segfault (asm.js + spidermonkey) [GH #624](https://github.com/jxcore/jxcore/issues/624) 
 
-- HTTP IncomingMessage constructor not recognized GH [#681](https://github.com/jxcore/jxcore/issues/681) 
+- HTTP IncomingMessage constructor not recognized [GH #681](https://github.com/jxcore/jxcore/issues/681) 
 
-- subthreads waiting for package to load. Fixes GH [#709](https://github.com/jxcore/jxcore/issues/709) 
+- subthreads waiting for package to load. Fixes [GH #709](https://github.com/jxcore/jxcore/issues/709) 
 
-- Remove max compression ratio limit GH [#703](https://github.com/jxcore/jxcore/issues/703) 
+- Remove max compression ratio limit [GH #703](https://github.com/jxcore/jxcore/issues/703) 
 
-- allow --prefix to be both relative and absolute. Applies to GH [#657](https://github.com/jxcore/jxcore/issues/657). Closes GH [#675](https://github.com/jxcore/jxcore/issues/675) 
+- allow --prefix to be both relative and absolute. Applies to [GH #657](https://github.com/jxcore/jxcore/issues/657). Closes [GH #675](https://github.com/jxcore/jxcore/issues/675) 
 
-- async readFile catches sync exception. Closes GH [#634](https://github.com/jxcore/jxcore/issues/634) 
+- async readFile catches sync exception. Closes [GH #634](https://github.com/jxcore/jxcore/issues/634) 
 
-- Fix when stdout and stderr don't use file descriptors 1 & 2, issue GH [#608](https://github.com/jxcore/jxcore/issues/608). 
+- Fix when stdout and stderr don't use file descriptors 1 & 2, issue [GH #608](https://github.com/jxcore/jxcore/issues/608). 
 
     *Detect when running in an environment that doesn't use file descriptors 1 & 2 for stdout and stderr streams, such as Windows GUI applications. Using those descriptors will throw an exception at engine startup, which would prevent the source file given to JX_DefineMainFile from running.*
 
-- More detailed stack traces from threads GH [#655](https://github.com/jxcore/jxcore/issues/655) 
+- More detailed stack traces from threads [GH #655](https://github.com/jxcore/jxcore/issues/655) 
 
-- use ./ rather than / for DESTDIR. Closes GH [#657](https://github.com/jxcore/jxcore/issues/657) 
+- use ./ rather than / for DESTDIR. Closes [GH #657](https://github.com/jxcore/jxcore/issues/657) 
 
-- SM: fixes unicode issue GH [#641](https://github.com/jxcore/jxcore/issues/641) 
+- SM: fixes unicode issue [GH #641](https://github.com/jxcore/jxcore/issues/641) 
 
     *Reduces the number of memory allocation requests*
 
-- android warning for global modules installation as root. Applies to GH [#628](https://github.com/jxcore/jxcore/issues/628) 
+- android warning for global modules installation as root. Applies to [GH #628](https://github.com/jxcore/jxcore/issues/628) 
 
-- ~/.jx and ~/.npm proper ownership with `sudo jx install`. Closes GH [#645](https://github.com/jxcore/jxcore/issues/645) 
+- ~/.jx and ~/.npm proper ownership with `sudo jx install`. Closes [GH #645](https://github.com/jxcore/jxcore/issues/645) 
 
-- fix finding jx.config / node.config on Windows. Closes GH [#642](https://github.com/jxcore/jxcore/issues/642) 
+- fix finding jx.config / node.config on Windows. Closes [GH #642](https://github.com/jxcore/jxcore/issues/642) 
 
-- fix for jx --debug GH [#623](https://github.com/jxcore/jxcore/issues/623) 
+- fix for jx --debug [GH #623](https://github.com/jxcore/jxcore/issues/623) 
 
-- _cmp() accept buffer GH [#508](https://github.com/jxcore/jxcore/issues/508) 
+- _cmp() accept buffer [GH #508](https://github.com/jxcore/jxcore/issues/508) 
 
-- fix test-chdir for el-capitan GH [#641](https://github.com/jxcore/jxcore/issues/641) 
+- fix test-chdir for el-capitan [GH #641](https://github.com/jxcore/jxcore/issues/641) 
 
     *credit goes to @silverwind
     https://github.com/nodejs/node/commit/ddf258376dd35d5813255b921701a75b28
     611979*
 
-- Efficiently repair reading of signed files GH [#583](https://github.com/jxcore/jxcore/issues/583) 
+- Efficiently repair reading of signed files [GH #583](https://github.com/jxcore/jxcore/issues/583) 
 
     *Uses a new method for finding the data to load; Fixes an issue with
     signing a Windows executable*
 
-- test: handle error message from new V8 engine in test-domain.js (ref: GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
+- test: handle error message from new V8 engine in test-domain.js (ref: [GH #585](https://github.com/jxcore/jxcore/issues/585)) 
 
-- src: fix possible crash in node_crypto.cc:EIO_PBKDF2After() variants (GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
+- src: fix possible crash in node_crypto.cc:EIO_PBKDF2After() variants ([GH #585](https://github.com/jxcore/jxcore/issues/585)) 
 
-- src: fix TCPWrap::InstantiateCOM() in case of NULL argument (ref: GH [#585](https://github.com/jxcore/jxcore/issues/585)) 
+- src: fix TCPWrap::InstantiateCOM() in case of NULL argument (ref: [GH #585](https://github.com/jxcore/jxcore/issues/585)) 
 
-- command line --sign support restored. Applies to GH [#583](https://github.com/jxcore/jxcore/issues/583) 
+- command line --sign support restored. Applies to [GH #583](https://github.com/jxcore/jxcore/issues/583) 
 
-- net-tcp test much improved. Applies to GH [#205](https://github.com/jxcore/jxcore/issues/205) 
+- net-tcp test much improved. Applies to [GH #205](https://github.com/jxcore/jxcore/issues/205) 
 
-- stream._writev method added GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+- stream._writev method added [GH #571](https://github.com/jxcore/jxcore/issues/571) 
 
-- jxm java client doc update on object reading. closes jxcore/jxmGH [#29](https://github.com/jxcore/jxcore/issues/29) 
+- jxm java client doc update on object reading. closes jxcore/jxm[GH #29](https://github.com/jxcore/jxcore/issues/29) 
 
-- reset event added to repl GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+- reset event added to repl [GH #571](https://github.com/jxcore/jxcore/issues/571) 
 
-- lookup event added to net GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+- lookup event added to net [GH #571](https://github.com/jxcore/jxcore/issues/571) 
 
-- path.isAbsolute method added GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+- path.isAbsolute method added [GH #571](https://github.com/jxcore/jxcore/issues/571) 
 
-- setDefaultEncoding method added to writable stream GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+- setDefaultEncoding method added to writable stream [GH #571](https://github.com/jxcore/jxcore/issues/571) 
 
-- cork and uncork methods added in writable stream GH [#571](https://github.com/jxcore/jxcore/issues/571) 
+- cork and uncork methods added in writable stream [GH #571](https://github.com/jxcore/jxcore/issues/571) 
 
 
 
