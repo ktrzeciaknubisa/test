@@ -1,787 +1,338 @@
-# Packaging
+[Node.JS](https://nodejs.org) plugin for Apache Cordova (built on [JXcore](https://github.com/jxcore/jxcore))
 
-JXcore introduces a unique feature for packaging of source files and other assets into JX packages.
+# Goals
+This project is intended to ;
+ - create an easy to use node.js plugin for Apache Cordova (Android, iOS)
+ - show JXcore's embedding interface in details.
 
-Let’s assume you have a large project consisting of many files. This feature packs them all into a single file to simplify the distribution.
-It also protects your server side JavaScript code by keeping all source files inside a package, which makes them more difficult to reach.
+# Installation
 
-JX packages can be easily executed with JXcore, just like regular JavaScript applications:
+### 1. Install Apache Cordova
 
-    > jx helloWorld.jx
+If you don't have **Cordova** installed, follow the steps from [this link](https://cordova.apache.org/#getstarted)
+to install Apache Cordova.
 
-instead of:
-
-    > jx helloWorld.js
-
-## Command
-
-### package
-
-    > jx package javascript_file [name_of_the_package] [options]
-
-The `jx package` command recursively scans the current folder and generates a `JXP` package information file based on all files in that directory.
-After that, it compiles the `JXP` file (by invoking `compile` command).
-
-* `javascript_file` - the main file, which will be executed when JX package is launched with JXcore.
-* `name_of_the_package` - indicates the name of the package file. For example, giving the value *MyPackage*  will create *MyPackage.jx* file.
-This value is optional. When not provided, the package name will be evaluated from `javascript_file` parameter (file name without an extension).
-Also the command-line argument [--name](#name) may be used here explicitly.
-
-Suppose you have a simple project, with just two files: *helloWorld.js* and *index.html*. When you call:
-
-    > jx package helloWorld.js "HelloWorld"
-
-or equivalent:
-
-    > jx package helloWorld.js --name "HelloWorld"
-
-initially, the tool generates `JXP` project file (*HelloWorld.jxp*). Then it is used as an input for `compile` command,
-which will create the output JX package *HelloWorld.jx*.
-
-#### options
-
-You may specify none, one or more of the following for the `jx package` command:
-
-* --add [ file||folder [, file2||folder2, ... ]]
-* --slim file||folder [, file2||folder2, ... ]
-* --native
-* --show-progress
-* --sign
-* JXP fields may be also provided here. See [File structure](#file-structure) for more information.
-
-All of the options may be provided with double dash prefix (e.g. `--add`) which satisfies the general convention for long name parameters.
-However for backwards compatibility, the single dash (e.g. `-add`) is still supported.
-
-#### boolean values
-
-Some of the switches may be provided as boolean values. Below is description of their usage.
-
-- if not provided, uses the default value. Each of the boolean switches described below has its own mentioned default value.
-
-- if provided, but not followed by any value, it acts as `true`:
+### 2. Install jxc tool
 
 ```bash
-> jx package helloWorld.js --extract
+$ npm install -g jxc
 ```
 
-- if provided, and followed by `0` or `no` or `false`, it acts as `false`:
+or if you have JXcore installed:
 
 ```bash
-> jx package helloWorld.js --extract 0
-> jx package helloWorld.js --extract no
-> jx package helloWorld.js --extract false
+$ jx install -g jxc
 ```
 
-- if provided, and followed by anything else than `0` or `no` or `false`, it acts as `true`:
+On posix platform you may need to run it as sudo.
+
+### 3. Install plugin
+
+Before installing the plugin you might want to enable jxc caching as follows:
 
 ```bash
-> jx package helloWorld.js --extract 1
-> jx package helloWorld.js --extract yes
-> jx package helloWorld.js --extract something
+$ jxc config set cache
 ```
 
-#### --add
+This is to prevent multiple downloads of same jxcore-cordova plugin by jxc.
 
-This optional parameter followed by file and/or folder names separated with commas - **explicitly adds** those files/folders into the final JX package.
-For example, you may want to package only certain files/folders located at current directory - not the whole its contents.
-
-The default separator is a comma sign. However you may use any other separator by setting a value of special environment variable [JX_ARG_SEP](jxcore-utils.markdown#jxargsep).
-
-If you want to pack just one file (e.g. *helloWorld.js*) you can provide an `--add` option without a file name.
-Thus the following two commands are equivalent:
-
-     > jx package helloWorld.js "HelloWorld" --add
-
-     > jx package helloWorld.js "HelloWorld" --add helloWorld.js
-
-Yu can still combine `-add` and `-slim` together, e.g. to add a folder, but exclude its sub-directory, like:
-
-     > jx package helloWorld.js "HelloWorld" --add node_modules --slim node_modules/express
-
-#### --slim
-
-This optional parameter followed by file and/or folder names separated with commas - **prevents adding** those files/folders into the final JX package.
-
-The default separator is a comma sign. However you may use any other character by setting special environment variable [JX_ARG_SEP](jxcore-utils.markdown#jxargsep).
-
-##### wildcards
-
-For both `--add` and `--slim` you can also use wildcards (`*` and `?`) for each file/folder entry.
-However if you do so, you'd better wrap them in double quotes, like below:
-
-    > jx package helloWorld.js "HelloWorld" --add "file*.txt"
-
-Otherwise the wildcard expression would be evaluated by shell (before invoking the command) and `--add` option
-would receive only first of the matched entries.
-
-Separated entries are also valid:
-
-    > jx package helloWorld.js "HelloWorld" --add "file*.txt,*.jpg" --slim "node?modules,dir*"
-
-##### absolute and relative paths
-
-Each single entries provided to `--add` or `--slim` may represent either an absolute path or path relative to current working directory.
-Below example defines for the `--slim` option the same path in 3 ways (2 relative and 3rd absolute), which is of course redundant, however illustrates the subject:
-
-     > jx package helloWorld.js "HelloWorld" --slim out,./out,/users/me/folder/out
-
-#### --native
-
-Boolean value. Default is `false`. See also [boolean values](#boolean-values).
-
-     > jx package helloWorld.js "HelloWorld" --native
-
-When it's set to `true`, the compilation process creates standalone, self-executable binary rather than a package.
-It means, that you can run it directly without `jx` binary.
-
-Also, the output file name will be changed. It will no longer contain *.jx* extension.
-In fact, for Unix systems it will not contain any extension at all, while on Windows - it will be an *.exe*.
-
-Thus, you can run it on Unix systems the following way:
-
-    > ./helloWorld
-
-On Windows:
-
-    > helloWorld.exe
-
-Additionally on Windows platforms certain file description details are written into the package's header information.
-Those are: `--company`, `--copyright`, `--description`, `--name` and `--version`.
-
-#### --show-progress
-
-This parameter defines the way of displaying packaging progress.
-It may receive multiple values: `list` (default), `line`, `percent`, `none`.
-
-Each option also has it's own influence on the performance of packaging process, which gets more visible for larger projects (containing e.g. thousands of files).
-
-* `list` - the standard way of displaying added files as a list - one below another.
-For really large projects it may not only flood the console window, but also unnecessarily extend the packaging duration.
-
-* `line` - not much faster then `list`, however doesn't flood the screen - each of the next added file is displayed in the same line of console window.
-
-* `percent` - only the percent of the progress is displayed, instead of file names.
-This option may significantly reduce packaging duration, because the progress is printed only 100 times (100%), instead of e.g. 10 000 (in case if you would have a project containing that many files).
-
-* `none` - the packaging process doesn't display packaging progress at all. For large projects it is expected to be the fastest.
-
-    > jx package helloWorld.js "HelloWorld" --show-progress percent
-
-#### --sign
-
-String value. It it used only when [-native](#--native) switch is set to `true`.
-It can be used for signing the native executable with user's certificate after the package is created.
-
-This applies only for Windows platforms and can work only if [Sign Tool](https://msdn.microsoft.com/en-us/library/8s9b9yaz%28v=vs.110%29.aspx) is installed in the system
-(it is s automatically installed with Visual Studio).
-
-The `--sign` switch may receive few variations of values:
-
-* **no value** (which means `true`)
-
-For example:
-
-    > jx package helloWorld.js "HelloWorld" --native --sign
-
-This internally invokes the following command:
-
-    > signtool sign /a HelloWorld.exe
-
-which automatically selects the best signing certificate. Please refer to `signtool sign /?` help.
-
-* **file path of user's certificate**
-
-For example:
-
-    > jx package helloWorld.js "HelloWorld" --native --sign "c:\mycert.pfx"
-
-This internally invokes the following command:
-
-    > signtool sign /f "c:\mycert.pfx" HelloWorld.exe
-
-Signs the native package with provided certificate file.
-However this will not work if the certificate requires a password, because it needs to be specified explicitly.
-In this case you can use the next approach.
-
-* **signtool's command-line parameters**:
-
-For example:
-
-    > jx package helloWorld.js "HelloWorld" --native --sign "/f 'c:\mycert.pfx' /p password"
-
-This internally invokes the following command:
-
-    > signtool sign /f "c:\mycert.pfx" /p password HelloWorld.exe
-
-### compile
-
-When you already have a `JXP` project file (either created with `package` command or manually), you can call `compile` for generating a JX package.
-
-    > jx compile project_file.jxp -native
-
-When `--native` switch is provided with `jx compile` command, it overrides `native` parameter value from a `JXP` file.
-
-## Hiding body of functions
-
-As of JXcore v Beta-0.3.0.0 (open source version) this feature is no longer available.
-
-## JX package
-
-### About JX package file
-
-The JX package file is what you get as a result of compilation and packaging your project.
-It’s a binary file used only by `jx` executable.
-Contains all of the script files of your project, as well as assets, which can be considered as static resources.
-
-### Compiling
-
-See `compile` command.
-
-### Launching
-
-JX packages can be executed as follows:
-
-    > jx my_project.jx
-
-Obviously, you need to have JXcore installed first. For this, please visit [Downloads](http://jxcore.com/downloads/) page.
-
-You can also run the package in multiple instances.
-
-    > jx mt my_project.jx
-
-or
-
-    > jx mt-keep my_project.jx
-
-## JXP project file
-
-The JXP file is a JX package description. It contains information about the package.
-This is also the input file for the compilation of JX file.
-It means, if you want to package your project into a JX package, you need to create JXP project file first.
-
-You can do it either manually or by using `package` command.
-
-### Excluding folders
-
-See `package` command with `--slim` switch.
-
-### File structure
-
-The JXP project file is a simple text file that contains package description written as json literal object:
-
-```js
-{
-    "name": "HelloWorld",
-    "version": "1.0",
-    "author": "",
-    "description": "",
-    "company": "",
-    "copyright": "",
-    "website" : "",
-    "package": null,
-    "startup": "helloWorld.js",
-    "execute": null,
-    "extract": {
-        "what" :  "*.node,*.txt",
-        "where" : "my_folder",
-        "message" : "Extracting now...",
-        "verbose" : true,
-        "overwrite" : true,
-        "chmod" : false
-    },
-    "output": "helloWorld.jx",
-    "files": [
-        "helloWorld.js"
-    ],
-    "assets": [
-        "index.html"
-    ],
-    "library": false,
-    "license_file": null,
-    "readme_file": null,
-    "preInstall" : [
-        "mkdir new_folder"
-    ],
-    "fs_reach_sources": true,
-    "native" : true,
-    "sign" : ""
-}
-```
-
-You can access this object in a runtime of your JX package by:
-
-```js
-var obj = exports.$JXP;
-```
-
-And the single field:
-
-```js
-var name = obj.name;
-```
-
-Below you can find explanation for all supported fields:
-
-#### name
-
-String value.
-Can be also used from the command-line: `--name`.
-
-This parameter is mandatory in JXP file, however optional in command-line. When not provided, the package name will be evaluated
-from `javascript_file` parameter (file name without an extension) - in this case of example above, this would be "helloWorld".
-
-Hence the two following calls are equivalent:
-
-    > jx package helloWorld.js --name MyApp
-    > jx package helloWorld.js MyApp
-
-#### version
-
-String value. Default "1.0".
-Can be also used from the command-line: `--version`, e.g.:
-
-    > jx package helloWorld.js --version 2.1
-
-#### author
-
-String value. Optional.
-Can be also used from the command-line: `--author`, e.g.:
-
-    > jx package helloWorld.js --author "John Doe"
-
-#### description
-
-String value. Optional.
-Can be also used from the command-line: `--description`, e.g.:
-
-    > jx package helloWorld.js --description "My best app"
-
-#### company
-
-String value. Optional.
-Can be also used from the command-line: `--company`, e.g.:
-
-    > jx package helloWorld.js --company "My company"
-
-#### copyright
-
-String value. Optional.
-Can be also used from the command-line: `--copyright`, e.g.:
-
-    > jx package helloWorld.js --copyright "My company"
-
-#### website
-
-String value. Optional.
-Can be also used from the command-line: `--website`, e.g:
-
-    > jx package helloWorld.js --website "http://mydomain.com"
-
-#### startup
-
-Name of the main project file. If execute parameter is not defined, this file will be executed first when you run the package.
-
-#### execute
-
-Name of the main execution file. If this parameter is omitted or null – the value from startup will be used.
-This parameter has different meaning depending on the `library` value.
-When the package is compiled with `library` = `false`, and you run the compiled package, this `execute` file will be executed first.
-If `library` is `true`, and the package is called with `require()` method, the execute file will be returned by the latter.
-
-#### extract
-
-This parameter may receive either boolean value, e.g:
-
-```js
-"extract" : true
-```
-
-or an object with extended data:
-
-```js
-"extract" : {
-    "what" : [
-        "*.node",
-        "*.txt",
-        "templates"
-    ],
-    "where" : "my_folder",
-    "message" : "Extracting now...",
-    "verbose" : true,
-    "overwrite" : true,
-    "chmod: false
-}
-```
-
-Default value for `extract` is `false` (or when parameter is not provided).
-
-When it's set to `true` or an object, all package contents will be extracted at first run of the compiled package.
-By default there will be a new folder created with the `name` parameter.
-All files and assets embedded inside the package will be saved with full directory structure preserved.
-
-##### chmod
-
-Boolean value. Default is `true`.
-Can be also used from the command-line: `--extract-chmod`. See also [boolean values](#boolean-values).
-
-    > jx package helloWorld.js --extract --extract-chmod false
-
-When it's set to `true`, the package extraction preserves original chmod attributes of packaged files and folders.
-
-When it's `false`, the packaging process will not even collect/store in package mode values for directories thus for larger projects this may result in slightly smaller package sizes.
-
-##### message
-
-You can display a custom message before the extraction starts. For this use the `message` parameter. It can be a string or an array.
-When providing an array, you may benefit from `jxcore.utils.console.log()` formatting feature. For example:
-
-```js
-"message" : [ "Extracting now...", "red+bold" ]
-```
-
-The message can be also set through the command-line parameter: `--extract-message`, e.g:
-
-    > jx package helloWorld.js --extract --extract-message "Extracting now..."
-
-##### overwrite
-
-Boolean value. Default is `false`.
-Can be also used from the command-line: `--extract-overwrite`. See also [boolean values](#boolean-values).
-
-    > jx package helloWorld.js --extract --extract-overwrite
-
-When it's set to `true`, the package extraction overwrites any existing files.
-
-##### pre-actions
-
-Analogous to [preInstall](#preinstall) option, except that here you can define system commands to be executed right **before jx package extraction**, rather than execution.
-Commands are executed in the same order as the array is defined.
-
-The special keyword `JX_BINARY` is also respected and is replaced during the runtime with current `jx` executable path.
-
-If [verbose](#verbose) is also defined, than each of the pre-action step will be logged into the console window, otherwise only errors will be displayed.
-
-When providing this parameter from the command-line, use `--extract-pre-actions`:
+Now, assuming your Cordova JXcore application is located under `/hello` folder, go under `/hello` folder.
 
 ```bash
-> jx package helloWorld.js --extract-pre-actions "mkdir -p testfolder, JX_BINARY -jxv" --extract-verbose
-Executing `extract-pre-actions` steps:
-1. 	 mkdir -p testfolder ... OK
-2. 	 JX_BINARY -jxv ... OK
-v Beta-0.3.0.6
+$ jxc install
 ```
 
-The above set of command options will get converted into the following `extract` object in .JXP file:
+By default the latest version of the plugin is used. However you may specify an exact version, e.g.:
+
+```bash
+$ jxc install 0.1.0
+```
+
+For list of other possible versions see http://az836273.vo.msecnd.net.
+
+### Visual Studio
+
+* Download the latest package
+    * either manually (e.g. http://az836273.vo.msecnd.net/0.0.8/io.jxcore.node.jx and save into e.g. *c:\jxcore-cordova*)
+    * or through `jxc download` command (in command prompt window started in e.g. *c:\jxcore-cordova*)
+* open your cordova solution in Visual Studio
+* double click *config.xml* in Solution Explorer
+* select **Plugins** and then **Custom** tab
+* select **Local** radio button and browse for *c:\jxcore-cordova\io.jxcore.node*
+* click **Add** button
+
+
+Once everything is set and you have added jxcore-cordova extension, create a folder named 
+`jxcore` right under `www`
+
+`www/jxcore/app.js` is your entry point to JXcore's JS.
+
+Node modules should go in the `www/jxcore/node_modules` folder.
+
+**Important Steps for the First Timers**  
+Under the sample folder you will find `express_sample` application. There you have the entire
+`www` folder that you can use instead of the `www` folder under cordova project root folder. 
+Replace `www` folder from the project's root to the one under the `sample/express_sample`.
+
+You can also use the automated script on posix platforms: `install_and_run.sh`. More on this 
+[here](install_and_run.md).
+
+Are you are looking for a minimalistic sample? follow the steps below;  
+ 1. Under the `sample/www` folder of this repo, you will find `index.html`. This sample file 
+ shows how to integrate JXcore interface into Cordova client side. Prior to installing 
+    JXcore plugin, you should update Cordova's index.html as shown from this sample file.
+
+ 2. This plugin expects you to have a folder named `jxcore` under `www` folder. The sample 
+ `index.html` tries to load `app.js` from this folder. You can copy `sample/www/` folder 
+ into `www` to run the basic demo.
+
+
+!In case you have a problem with installing the plugin. You may follow the steps below;
+(be careful though since this trick removes the existing platforms and installs them back)
+
+```bash
+cordova platform remove ios
+cordova platform remove android
+cordova plugins remove io.jxcore.node
+
+# re-add the plugin:
+cordova plugins add io.jxcore.node
+# or if you use jxc:
+jxc install --force
+
+cordova platform add ios
+cordova platform add android
+```
+
+Now you can visit `platforms/ios` or `platforms/android` folders and open Xcode project file 
+or import the android project from Eclipse.
+
+# Updating JXcore binaries [optional]
+
+Below are the steps to be taken if you want to update JXcore binaries in your Cordova JXcore 
+application. They all should be called prior to `cordova plugin add` command. This step is 
+optional. We keep the core binaries are updated. 
+
+1. Rebuild JXcore binaries: [Compile as a Static Library](https://github.com/jxcore/jxcore/blob/master/doc/Android_Compile.md#compile-as-a-static-library)
+2. Refresh `jxcore-cordova/src/android/jxcore-binaries` folder contents:
+
+    ```bash
+    $ cd /my/cordova/app
+    $ git clone https://github.com/jxcore/jxcore-cordova.git
+    $ rm -f ./jxcore-cordova/src/android/jxcore-binaries/*
+    $ cp -f /jxcore/repo/out_android/android/bin/* jxcore-cordova/src/android/jxcore-binaries/
+    ```
+
+3. Recompile .so files
+
+    ```bash
+    $ cd jxcore-cordova/src/android/jni
+    $ ~/android-ndk-path/ndk-build
+    ```
+
+4. Add/re-add the plugin/platform
+
+    ```bash
+    $ cd ../../../../
+    $ cordova plugin add jxcore-cordova/
+    $ cordova platforms add android
+    ```
+
+5. You may run the app now
+
+    ```bash
+    $ cordova run
+    ```
+
+# Usage
+
+**JavaScript on UI side works on top of Cordova's webUI. JXcore's JavaScript is a separate instance.**
+
+So you need an API to communicate between Cordova JS to JXcore JS.
+
+#### Cordova to JXcore
+These API methods are used on the side of Apache Cordova (for example, in the main `index.html` 
+of your Cordova application).
+
+##### Sharing a JavaScript function from Cordova to JXcore
+```js
+jxcore(name_of_the_function).register(a_function_to_register);
+```
+Example:
+```js
+jxcore('alert').register(function(msg){ alert(msg); });
+```
+
+##### Calling a JavaScript function (shared on JXcore side) from Cordova
+```js
+jxcore(name_of_the_function).call(params_to_send..., callback);
+```
+Example:
+```js
+jxcore('asyncPing').call('Hello', function(p1, p2, p3...){ });
+```
+
+#### JXcore to Cordova
+These API methods are used on the side of JXcore (for example, in the main `app.js` of your 
+application based on Node API).
+
+##### Sharing a synchronous JavaScript function from JXcore to Cordova
+```js
+Mobile(name_of_the_function).registerSync(a_function_to_register);
+```
+This method expects the registered function to be synchronous (i.e. to immediately return a value). 
+
+Example:
+```js
+Mobile('syncPing').registerSync(function(msg){ return msg + ' pong'; });
+```
+
+##### Sharing an asynchronous JavaScript function from JXcore to Cordova
+```js
+Mobile(name_of_the_function).registerAsync(a_function_to_register);
+```
+This method expects the registered function to be asynchronous (i.e. to return some value using a callback). 
+
+Example:
+```js
+Mobile('asyncPing').registerAsync(function(msg, callback){ callback(msg + ' pong') });
+```
+
+##### Calling a JavaScript function (shared on Cordova side) from JXcore
 
 ```js
-"extract": {
-    "pre-actions": [
-        "mkdir -p testfolder",
-        "JX_BINARY -jxv"
-    ],
-    "verbose": true
-}
+Mobile(name_of_the_function).call(params...);
+```
+Example:
+```js
+Mobile('log').call(msg);
 ```
 
-##### post-actions
+#### JXcore to JAVA / Objective-C (vice versa)
+You may also define JXcore JS side methods those you want to call from Java / Obj-C.
 
-Same as [pre-actions](#pre-actions), except that here you can define system commands to be executed right **after** jx package extraction.
-Can be also used from the command-line: `--extract-post-actions`.
+If you need a JS side method that you want to call multiple times use below approach instead 
+depending on a method callback id.
 
-##### verbose
+#### How to Install Node Modules
+Visit www/jxcore folder and install the node modules there. It's adviced to use 'jx install' 
+command to install node modules from npm.
 
-Boolean value. Default is `false`.
-Can be also used from the command-line: `--extract-verbose`. See also [boolean values](#boolean-values).
+For example
+```bash
+// UNIX
+www/jxcore > sudo jx install jxm --autoremove "*.gz" 
 
-    > jx package helloWorld.js --extract --extract-verbose
+// Windows
+www/jxcore > jx install jxm --autoremove "*.gz"
+```
 
-Value set to `true` displays the list of files being extracted.
+'--autoremove "*.gz"' will be removing the gz files from modules folder. Android APK doesn't 
+allow you to put .gz files into application's assets.
 
-##### Full Extraction
+#### Where To Save your Files (Write access on mobile targets) EROFS error ?
+Consider using either `process.userPath` or `require('os').tmpdir()` to get the Documents 
+(on ios) or a folder you have the write access. `process.cwd()` or `__dirname` may not 
+target a folder that you have the write access!
 
-When the `extract` in JXP file parameter is boolean `true`, it enables the **full extraction** (extracts the entire contents on first package execution).
+If you are okay with using Mobile specific API see Mobile.GetDocumentsPath below;
 
-You can achieve the same by using command-line parameter `--extract`, which accepts multiple [boolean values](#boolean-values), e.g.:
-
-    > jx package helloWorld.js --extract
-
-##### Partial extraction
-
-##### what
-
-The `what` parameter enables **partial contents extraction**. It is an array defining which paths or masks should be extracted.
+#### Mobile.getDocumentsPath
+Returns the location for Application (specific) writable folder.
 
 ```js
-"extract" : {
-    "what" : [
-        "*.node",
-        "*.txt"
-    ]
-}
+Mobile.getDocumentsPath(function(err, location) {
+  if (err)
+    console.error("Error", err);
+  else
+    console.log("Documents location", location);
+});
 ```
 
-The partial extraction may work only if the contents is extracted into the application's root directory,
-thus the `where` parameter needs to be set with "./" value.
+Android and iOS file systems behave differently. Android OS supports external persistent 
+storage. If you want to store a persistent information on Android OS, consider using sdcard 
+location.
 
-When providing this parameter from the command-line, use `--extract-what`:
-
-    > jx package helloWorld.js --extract-what "*.node,*.txt"
-
-The default separator is a comma sign. However you may use any other character by setting special environment variable [JX_ARG_SEP](jxcore-utils.markdown#jxargsep).
-
-##### where
-
-The `where` allows to change a folder name into which the package is extracted.
-By default, when the value is not provided, it is set to the name of the package.
-You may change it into any other name or path (relative to application root directory), for example:
+#### Mobile.getConnectionStatus
+Returns device's connection status
 
 ```js
-"extract" : {
-    "where" : "my_folder/my_sub_folder"
-}
+Mobile.getConnectionStatus(function(err, status) {
+  if (status.NotConnected)
+    console.log("No internet connection");
+  else if (status.WiFi)
+    console.log("WiFi");
+  else if (status.WWAN)
+    console.log("Mobile Connection");
+});
 ```
 
-If you want to extract the contents into the application's root directory rather than into default sub folder, use `"where" : "./"`.
-
-When providing this parameter from the command-line, use `--extract-where`:
-
-    > jx package helloWorld.js --extract-where my_folder
-
-There is also an extra command-line parameter available: `--extract-app-root` which is an alias to `--extract-where "./"`'
-Thus the two following calls are equivalent:
-
-    > jx package helloWorld.js --extract-where ./
-    > jx package helloWorld.js --extract-where --extract-app-root
-
-#### output
-
-Name of the output JX package.
-
-#### files
-
-This is an array, where you can define, which script files from your project will be included into the JX package.
-Only `*.js` and `*.json` files are allowed here.
-
-#### assets
-
-This is the array with static resource files. You can embed any asset file into the `jx` package.
-
-#### library
-
-Boolean value. Default is `true`.
-Can be also used from the command-line: `--library`. See also [boolean values](#boolean-values).
-
-Value set to `true` means that JX package can be treated as a library and it can be used from inside another JX package (with `require()` method).
-Setting this value to `false` is a good way of preventing its usage as an external module (and then `require()` will not be possible).
-
-#### licence_file
-
-Name of the file containing the licensing information – it is generally a simple text file.
-If this parameter is omitted or null and if a file named “LICENSE” exists in the directory from where you compile the package – it will be embedded automatically.
-
-#### readme_file
-
-Name of the file containing additional notes about the package.
-If this parameter is omitted or null and if a file named “README” or “README.md” exists in the directory
-from where you compile the package– it will be embedded automatically.
-When a license or readme file is specified, it can be also displayed in a console window directly from the package.
-
-For example, running the following command:
-
-    > jx package.jx license
-
-will display the licence file to the console without executing the package. The same applies to:
-
-    > jx package.jx readme
-
-#### preInstall
-
-This is an array, where you can define system commands to be executed right before jx package execution.
-For example, this might be creating a folder, installing an additional package/module or just anything.
-Commands are executed in the same order as the array is defined.
-
-There is a special keyword `JX_BINARY` which is replaced during runtime with current `jx` executable path.
-
-For example, we have the following commands in JXP file:
+#### Mobile.getDeviceName
+Returns device's manufacturer and model name
 
 ```js
-"preInstall" : [
-    "which JX_BINARY > log.txt",
-    "JX_BINARY -jxv >> log.txt"
-]
+Mobile.getDeviceName(function(err, name) {
+  if (err)
+    console.error("Something bad has happened");
+  else 
+    console.log("Device name", name)
+});
 ```
 
-Those commands will be executed for the first time, when we run the package:
+#### JXcore side events
 
-    > jx package.jx
+* pause
 
-or
+Occurs whenever an application is paused on the device (e.g. goes to the background).
 
 ```js
-var module = require("./package.jx");
+process.on('pause', function() {
+  console.log('pause');
+});
 ```
 
-In this example, the first commands writes the full path string of jx binary to the *log.txt* file, while the second one - executes `jx -jxv`
-and appends the result (the jx version number) to the same file.
+* resume
 
-When all of the commands are executed, there will be a file created `your_module.installed` preventing subsequent execution of pre-install section.
-If you want to run it again, simply remove that file.
-
-This parameter can be also used from the command-line: `--preInstall` or `--preinstall`.
-In such case it receives commands separated with commas.
-However you may use any other character by setting special environment variable [JX_ARG_SEP](jxcore-utils.markdown#jxargsep).
-
-For example, the following command line:
-
-    > jx package helloWorld.js --preinstall "mkdir dir1,touch dir1/file.txt"
-
-will get converted to the following array and embedded into JXP project file:
+Occurs whenever an application will start interacting with the user (e.g. comes back from the background).
 
 ```js
-    ...
-	"preInstall": [
-		"mkdir dir1",
-		"touch dir1/file.txt"
-	],
-	...
+process.on('resume', function() {
+  console.log('resume');
+});
 ```
 
-#### custom_fields
+* connectionStatusChanged(status)
 
-You can also define your own constants, as many as you want, for example:
+Occurs whenever network connection status has been changed on mobile device (e.g. WiFi has been turned on or Plane Mode has been enabled).
+
+The `status` is a string containing one of the following: `WiFi`, `WWAN`, `NotConnected`.
+See also [Mobile.getConnectionStatus](#mobilegetconnectionstatus).
 
 ```js
-{
-    // ...
-    // ...
-    // ...
-    field1 : "one",
-    myField2 : "two",
-    someObject : {
-        PI : 3.14159265359,
-        userArray : [ 1, 2 ]
-    },
-    Release : true
-}
+process.on('connectionStatusChanged', function(status) {
+  console.log('new network status:', status);
+});
 ```
 
-Similarly, accessing those values in a runtime of your JX package is also easy:
+#### JS Error Tracking
+If you want to customize JS side errors, visit `JXMobile.java` for Android and `JXMobile.m` 
+for iOS and update `OnError` behavior
+
+#### Remarks
+  - JXcore cordova interface doesn't keep the reference for a callback id once it's used.
+  - JavaScript is a single threaded language. Don't call the referenced JS methods from 
+  other threads. 
 
 ```js
-var pi = exports.$JXP.someObject.PI;
+  Mobile('fromJXcore').registerToNative(function(param1, param2){
+    // this method is reachable from Java or ObjectiveC
+    // OBJ-C : [JXcore callEventCallback:@"fromJXcore" withParams:arr_parms];
+    // Java  : jxcore.CallJSMethod("fromJXcore", arr_params);
+  });
 ```
 
-One of the usage examples for those custom fields can be:
+See JXcoreExtension.java / JXcoreExtension.m / .h for sample Java/Obj-C definitions.
 
-```js
-if (exports.$JXP.Release) {
-    console.log("This is the final release of the product.");
-} else {
-    console.log("This code is still under development.");
-}
-```
-
-However, `files` members are not accessible from exports.$JXP.
-
-#### fs_reach_sources
-
-Boolean value. Default is `true`.
-
-Normally, `fs` can not reach the JavaScript files inside the package.
-If you need to access all the JavaScript files using `fs` module, you should set this parameter to 'true'.
-Otherwise you can either set it to 'false' or give the list of files expected to be reachable by 'fs' module
-(i.e. { "lib/testfile.js":true, "lib/test2.js":true } ).
-
-This parameter can be also used from the command-line: `--fs_reach_sources` as one of [boolean values](#boolean-values).
-
-#### native
-
-See the [--native](#--native) command-line switch.
-
-#### sign
-
-Ability to sign the native executable package. See the [`--sign`](#--sign) switch.
-
-### Supported file types
-
-You can embed any asset file (text and binary) into the `jx` package and it will be
-placed automatically into the `assets` array of `JXP` project file during execution of `jx package` command.
-
-However, there are two file types, which are treated by JXcore as source files rather than assets:
-
-* js
-* json
-
-The difference is, that source files cannot be read from a package during runtime.
-This is a security feature of JXcore packaging.
-For more information see [Accessing Files and Assets from a Package](#files).
-
-The `jx package` puts them into the `files` array of `JXP` project file during execution of `jx package` command.
-
-Even if you would edit the `JXP` project file manually and add `js` files into the `assets` array, JXcore removes them from the `assets` and treats them as source files.
-
-## Accessing Files and Assets from a Package
-
-### assets
-
-There are a few native methods in the [FileSystem](fs.markdown) module that you can use to access assets embedded inside a JX package.
-
-* `readFile()`
-* `readFileSync()`
-* `readdir()`
-* `readdirSync()`
-
-When called, each of these methods tries to find a given file or a folder in the real file system in the first place.
-If nothing is found, JXcore searches through assets from the JX package.
-
-Assets can always be referenced relatively to `__dirname` or `./`.
-
-Let's consider a JX package containing the following directory structure:
-
-- folder
-  - file2.html
-  - module.js
-- index.html
-- package.json
-- test.js
-
-After creating a package with the command:
-
-    > jx package test.js my_package
-
-we can access the assets of the package from inside the *test.js* file, and this would be like this:
-
-```js
-var fs = require('fs');
-
-// gets index.html file from package's assets, if it does not exists on the disk.
-var index = fs.readFileSync(__dirname + '/index.html');
-
-// asset from subfolder:
-var file = fs.readFileSync(__dirname + '/folder/file2.html');
-```
-
-The following sample works as expected, returns the directory contents of the file system. `readdir()` and `readdirSync()`
-return from the JX package only when the given path does not exist on real file system. Calling one of these methods for the main
-folder of the JX package will return the results from actual file system. In order to reach asset files using one of these
-methods, you should consider putting them in a sub folder.
-
-```js
-var fs = require('fs');
-var index1 = fs.readdirSync('./folder');
-```
-
-### files
-
-`readFile()` and `readFileSync()` methods can be used to reach any files inside a JX package except for the source files.
-JavaScript files inside a JX package can be accessed only by using `require()` method. In other words,
-you can not read the source files using `readFile()` or `readFileSync()`.
-
-Example below shows how to load *module.js* file contained inside *folder* directory of JX package:
-
-```js
-var lib = require("./folder/module.js");
-console.log("lib.value", lib.value);
-```
-
-
+# Contribution
+If you see a mistake / bug or you think there is a better way to do the things, feel free 
+to contribute. All the contributions are considered under MIT license.
